@@ -3,6 +3,7 @@ import './App.css';
 import Header from "./Header/Header";
 import Pomodoro from "./Pomodoro/Pomodoro";
 import {Context} from "./Context/Context"
+import Info from "./Info/Info";
 
 function App() {
     return (
@@ -10,6 +11,7 @@ function App() {
             <Context.Provider>
                 <Header/>
                 <Pomodoro/>
+                <Info/>
             </Context.Provider>
         </div>
     );

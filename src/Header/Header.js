@@ -1,26 +1,37 @@
 import React from 'react';
 import './Header.css'
-class Header extends React.Component {
+import Presets from "../Modals/Presets";
+import CustomTimes from "../Modals/CustomTimes";
 
+class Header extends React.Component {
+    constructor(props) {
+        super(props);
+
+        // This binding is necessary to make `this` work in the callback
+        this.setPresets = this.setPresets.bind(this);
+        this.setCustomTimes = this.setCustomTimes.bind(this);
+    }
     state = {
         customTimes: false,
         presets: false
     };
-    openModal(modal){
 
+    setCustomTimes() {
+        this.setState({customTimes: false})
     }
-
-    secToMins(num) {
-        return num * 60;
+    setPresets() {
+        this.setState({presets: false})
     }
-    render(){
+    render() {
         return (
             <div className="header">
                 <h1>Koi Timer</h1>
                 <div className="nav">
-                <button onClick={()=> this.setState({customTimer: true})}>Custom Timer</button>
-                <button onClick={()=> this.setState({presets: true})}>Presets</button>
+                    <button onClick={() => this.setState({customTimes: true})}>Custom Timer</button>
+                    <button onClick={() => this.setState({presets: true})}>Presets</button>
                 </div>
+                <Presets setPresets={this.setPresets} active={this.state.presets}/>
+                <CustomTimes setCustomTimes={this.setCustomTimes} active={this.state.customTimes}/>
             </div>
         );
     }
