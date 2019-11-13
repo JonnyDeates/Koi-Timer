@@ -4,6 +4,7 @@ import Header from "./Header/Header";
 import Pomodoro from "./Pomodoro/Pomodoro";
 import {Context} from "./Context/Context"
 import Info from "./Info/Info";
+import Footer from "./Footer/Footer";
 
 function App() {
     return (
@@ -12,6 +13,7 @@ function App() {
                 <Header/>
                 <Pomodoro/>
                 <Info/>
+                <Footer/>
             </Context.Provider>
         </div>
     );

@@ -3,4 +3,24 @@
     display: flex;
     justify-content: space-evenly;
     position: relative;
+    min-height: 50vh;
+}
+.info > div {
+    margin: auto 0;
+}
+.info > button {
+    margin: 7rem 16px 7rem 16px;
+    font-size: xx-large;
+    font-weight: 900;
+    border: unset;
+    background-color: unset;
+    border-radius: 25px;
+    padding: 0px 16px;
+    cursor: pointer;
+}
+.info > button:hover {
+    background-color: #00000011;
+}
+.info > div > ol, .info > div > ul {
+    text-align: left;
 }
