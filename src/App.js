@@ -10,7 +10,8 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            isLoopOn: false
+            isLoopOn: false,
+            timerArray: [1,1,1,1,1,1,11,1,1]
         };
         this.toggleLoop = () => {
             this.setState({isLoopOn: !this.state.isLoopOn})
@@ -24,10 +25,10 @@ class App extends React.Component {
             isLoopOn: this.state.isLoopOn,
             toggleLoop: this.toggleLoop,
             audioToPlay: sound,
-            pomodoro: 2,
+            pomodoro: 25*60,
             shortBreak: 5*60,
             longBreak: 15*60,
-            timerArray: [2,14,4,5],
+            timerArray: this.state.timerArray,
             setTimerArray: this.setTimerArray
         };
         return (

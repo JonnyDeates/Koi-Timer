@@ -8,4 +8,5 @@ export const Context = React.createContext({
     shortBreak: 5*60,
     longBreak: 15*60,
     toggleLoop: () => {},
+    setTimerArray: () => {},
 });
