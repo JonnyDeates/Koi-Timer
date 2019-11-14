@@ -6,9 +6,6 @@ import {Context} from "../Context/Context";
 class Pomodoro extends React.Component {
     static contextType = Context;
     state = {
-        pomodoro: 25*60,
-        shortBreak: 5*60,
-        longBreak: 15*60,
         count: 25*60,
         isOnLoop: false
     };
@@ -18,20 +15,16 @@ class Pomodoro extends React.Component {
         } else {
             this.setState({count: newTime})
         }
-
-    }
-
-    secToMins(num) {
-        return num * 60;
+        console.log(this.context)
     }
     render(){
         return (
             <div className="body">
-                <button onClick={()=>this.setTimer(this.state.pomodoro)}>Pomodoro</button>
-                <button onClick={()=>this.setTimer(this.state.shortBreak)}>Short Break</button>
-                <button onClick={()=>this.setTimer(this.state.longBreak)}>Long Break</button>
+                <button onClick={()=>this.setTimer(this.context.pomodoro)}>Pomodoro</button>
+                <button onClick={()=>this.setTimer(this.context.shortBreak)}>Short Break</button>
+                <button onClick={()=>this.setTimer(this.context.longBreak)}>Long Break</button>
                 <button className={(this.context.isLoopOn) ? 'tinted' : ''} onClick={this.context.toggleLoop}>Loop</button>
-                {(this.context.isLoopOn) ? <ArrayTimer time={[25*60,5*60,25*60,5*60,25*60,5*60,25*60,15*60]}/> : <Timer time={this.state.count}/>}
+                {(this.context.isLoopOn) ? <ArrayTimer time={this.context.timerArray}/> : <Timer time={this.state.count}/>}
             </div>
         );
     }

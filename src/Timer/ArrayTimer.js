@@ -1,17 +1,21 @@
 import React from 'react';
 import "./Timer.css";
 import {TitleComponent} from "../Title/Title";
+import {getTime} from "../Utlis/TimerUtils";
+import {Context} from "../Context/Context";
 
 class ArrayTimer extends React.Component {
+    static contextType = Context;
     state = {
         time: this.props.time,
         count: this.props.time[0],
         currentTimer: 1,
         isOn: false,
-        Interval: null
+        Interval: null,
+        isPlaying: null
     };
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
+    componentDidUpdate(prevProps, prevState) {
         if (this.props.time !== prevProps.time) {
             if (this.state.Interval) {
                 this.componentWillUnmount();
@@ -30,9 +34,19 @@ class ArrayTimer extends React.Component {
                     if (this.state.time.length !== this.state.currentTimer && this.state.count <= 0) {
                         this.setState({
                             currentTimer: this.state.currentTimer + 1,
-                            count: this.state.time[this.state.currentTimer]
+                            count: this.state.time[this.state.currentTimer],
+                            isPlaying: this.context.audioToPlay
+                        }, function () {
+                            this.refs.audio.pause();
+                            this.refs.audio.load();
+                            this.refs.audio.play();
                         });
                     } else if (this.state.count <= 0) {
+                        this.setState({isPlaying: this.context.audioToPlay}, function () {
+                            this.refs.audio.pause();
+                            this.refs.audio.load();
+                            this.refs.audio.play();
+                        });
                         clearInterval(this.state.Interval);
                     }
                 }, 1000)
@@ -45,33 +59,12 @@ class ArrayTimer extends React.Component {
         this.setState({isOn: false});
     }
 
-    zeroPadding(num) {
-        if (num < 10) {
-            return '0' + num;
-        } else {
-            return num;
-        }
-    }
-
-    getMinutes(count) {
-        if (count >= 60) {
-            return this.zeroPadding(Math.floor((count / 60))) + ':'
-        }else {
-            return ''
-        }
-    }
-
-    getHours(count) {
-        if (count >= 3600) {
-            return this.zeroPadding(Math.floor((count / 3600))) + ':'
-        } else {
-            return ''
-        }
-    }
 
     stopInterval() {
         clearInterval(this.state.Interval);
-        this.setState({isOn: false});
+        this.setState({isOn: false, isPlaying: this.context.audioToPlay}, function () {
+            this.refs.audio.pause();
+        });
     }
 
     startInterval() {
@@ -82,7 +75,14 @@ class ArrayTimer extends React.Component {
 
     restartTimer() {
         clearInterval(this.state.Interval);
-        this.setState({count: this.state.time[0], isOn: false, currentTimer: 1});
+        this.setState({
+            count: this.state.time[0],
+            isOn: false,
+            currentTimer: 1,
+            isPlaying: this.context.audioToPlay
+        }, function () {
+            this.refs.audio.pause();
+        });
     }
 
     skipTimer() {
@@ -100,11 +100,14 @@ class ArrayTimer extends React.Component {
 
     render() {
         const {count} = this.state;
-        const title = this.getHours(count) + this.getMinutes(count) + this.zeroPadding(count % 60);
+        const title = getTime(count);
         return (
             <div className="timer">
                 <h1>{title}</h1>
                 <TitleComponent title={title + ' Koi Timer'}/>
+                <audio ref="audio">
+                    <source src={this.state.isPlaying}/>
+                </audio>
                 <div className='timer-buttons'>
                     {(this.state.isOn) ? <button onClick={() => this.stopInterval()}> Pause </button> :
                         <button onClick={() => this.startInterval()}> Start </button>}

@@ -1,11 +1,16 @@
 import React from 'react';
 import "./Timer.css";
+import {TitleComponent} from "../Title/Title";
+import {getTime} from "../Utlis/TimerUtils";
+import {Context} from "../Context/Context";
 class Timer extends React.Component {
+    static contextType = Context;
     state = {
         time: this.props.time,
         count: this.props.time,
         isOn: false,
-        Interval: null
+        Interval: null,
+        isPlaying: null
     };
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -25,6 +30,11 @@ class Timer extends React.Component {
                         count: prevState.count - 1
                     }));
                     if (this.state.count <= 0) {
+                        this.setState({ isPlaying: this.context.audioToPlay },function(){
+                            this.refs.audio.pause();
+                            this.refs.audio.load();
+                            this.refs.audio.play();
+                        })
                         clearInterval(this.state.Interval)
                     }
                 }, 1000)
@@ -37,28 +47,13 @@ class Timer extends React.Component {
         this.setState({isOn: false});
     }
 
-    zeroPadding(num) {
-        if (num < 10) {
-            return '0' + num;
-        } else {
-            return num;
-        }
-    }
-
-    getMinutes(count) {
-        if (count >= 60) {
-            return this.zeroPadding(Math.floor((count / 60))) + ':'
-        }
-    }
-
-    getHours(count) {
-        if (count >= 3600) {
-            return this.zeroPadding(Math.floor((count / 3600))) + ':'
-        }
-    }
-
     stopInterval() {
         clearInterval(this.state.Interval);
+        if(this.state.count <= 0) {
+            this.setState({count: this.state.time, isPlaying: this.context.audioToPlay },function(){
+                this.refs.audio.pause();
+            })
+        }
         this.setState({isOn: false});
     }
 
@@ -70,15 +65,24 @@ class Timer extends React.Component {
 
     restartTimer() {
         clearInterval(this.state.Interval);
-        this.setState({count: this.state.time});
-        this.setState({isOn: false});
+        this.setState({count: this.state.time, isOn: false});
+        if(this.state.count <= 0) {
+            this.setState({isPlaying: this.context.audioToPlay },function(){
+                this.refs.audio.pause();
+            })
+        }
     }
 
     render() {
         const {count} = this.state;
+        const title = getTime(count);
         return (
             <div className="timer">
-                <h1>{this.getHours(count)}{this.getMinutes(count)}{this.zeroPadding(count % 60)}</h1>
+                <TitleComponent title={title + ' Koi Timer'}/>
+                <h1>{title}</h1>
+                <audio ref="audio">
+                    <source src={this.state.isPlaying} />
+                </audio>
                 <div className="timer-buttons">
                     {(this.state.isOn) ? <button onClick={() => this.stopInterval()}> Pause </button> :
                         <button onClick={() => this.startInterval()}> Start </button>}
