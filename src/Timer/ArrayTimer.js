@@ -1,5 +1,7 @@
 import React from 'react';
 import "./Timer.css";
+import {TitleComponent} from "../Title/Title";
+
 class ArrayTimer extends React.Component {
     state = {
         time: this.props.time,
@@ -54,12 +56,16 @@ class ArrayTimer extends React.Component {
     getMinutes(count) {
         if (count >= 60) {
             return this.zeroPadding(Math.floor((count / 60))) + ':'
+        }else {
+            return ''
         }
     }
 
     getHours(count) {
         if (count >= 3600) {
             return this.zeroPadding(Math.floor((count / 3600))) + ':'
+        } else {
+            return ''
         }
     }
 
@@ -76,19 +82,33 @@ class ArrayTimer extends React.Component {
 
     restartTimer() {
         clearInterval(this.state.Interval);
-        this.setState({count: this.state.time[0], isOn: false, currentTimer: 0});
+        this.setState({count: this.state.time[0], isOn: false, currentTimer: 1});
+    }
+
+    skipTimer() {
+        if (this.state.currentTimer + 1 <= this.state.time.length) {
+            this.setState({
+                count: this.state.time[this.state.currentTimer],
+                isOn: false,
+                currentTimer: this.state.currentTimer + 1
+            });
+        } else {
+            this.setState({count: this.state.time[0], isOn: false, currentTimer: 0})
+        }
+
     }
 
     render() {
         const {count} = this.state;
+        const title = this.getHours(count) + this.getMinutes(count) + this.zeroPadding(count % 60);
         return (
             <div className="timer">
-                <h1>{this.getHours(count)}{this.getMinutes(count)}{this.zeroPadding(count % 60)}</h1>
-
+                <h1>{title}</h1>
+                <TitleComponent title={title + ' Koi Timer'}/>
                 <div className='timer-buttons'>
                     {(this.state.isOn) ? <button onClick={() => this.stopInterval()}> Pause </button> :
                         <button onClick={() => this.startInterval()}> Start </button>}
-
+                    <button onClick={() => this.skipTimer()}>Skip</button>
                     <button onClick={() => this.restartTimer()}> Restart</button>
                 </div>
             </div>

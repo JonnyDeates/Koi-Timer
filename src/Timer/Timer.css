@@ -14,7 +14,7 @@
     border: unset;
     box-shadow: 3px 4px 5px 2px hsla(0,0%,100%,.1), 1px 2px 2px 1px hsla(0,0%,78.4%,.3);
     cursor: pointer;
-    border-radius: 16px;
-    padding: 8px;
+    border-radius: 25px;
+    padding: 16px;
     font-weight: 700;
 }

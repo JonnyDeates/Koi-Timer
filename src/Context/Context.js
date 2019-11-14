@@ -4,5 +4,5 @@ import * as React from "react";
 
 export const Context = React.createContext({
     isLoopOn: false,
-    toggleTheme: () => {},
+    toggleLoop: () => {},
 });

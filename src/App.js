@@ -6,17 +6,32 @@ import {Context} from "./Context/Context"
 import Info from "./Info/Info";
 import Footer from "./Footer/Footer";
 
-function App() {
-    return (
-        <div className="App">
-            <Context.Provider>
-                <Header/>
-                <Pomodoro/>
-                <Info/>
-                <Footer/>
-            </Context.Provider>
-        </div>
-    );
+class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isLoopOn: false
+        };
+        this.toggleLoop = () => {
+            this.setState({isLoopOn: !this.state.isLoopOn})
+        };
+    }
+    render() {
+        const value = {
+            isLoopOn: this.state.isLoopOn,
+            toggleLoop: this.toggleLoop
+        };
+        return (
+            <div className="App">
+                <Context.Provider value={value}>
+                    <Header/>
+                    <Pomodoro/>
+                    <Info/>
+                    <Footer/>
+                </Context.Provider>
+            </div>
+        );
+    }
 }
 
 

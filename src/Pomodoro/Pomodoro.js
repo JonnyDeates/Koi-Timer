@@ -2,8 +2,9 @@ import React from 'react';
 import Timer from "../Timer/Timer";
 import ArrayTimer from "../Timer/ArrayTimer";
 import './Pomodoro.css'
+import {Context} from "../Context/Context";
 class Pomodoro extends React.Component {
-
+    static contextType = Context;
     state = {
         pomodoro: 25*60,
         shortBreak: 5*60,
@@ -29,8 +30,8 @@ class Pomodoro extends React.Component {
                 <button onClick={()=>this.setTimer(this.state.pomodoro)}>Pomodoro</button>
                 <button onClick={()=>this.setTimer(this.state.shortBreak)}>Short Break</button>
                 <button onClick={()=>this.setTimer(this.state.longBreak)}>Long Break</button>
-                <button onClick={()=>this.setState({isOnLoop: true})}>Loop</button>
-                {(this.state.isOnLoop) ? <ArrayTimer time={[25*60,5*60,25*60,5*60,25*60,5*60,25*60,15*60]}/> : <Timer time={this.state.count}/>}
+                <button className={(this.context.isLoopOn) ? 'tinted' : ''} onClick={this.context.toggleLoop}>Loop</button>
+                {(this.context.isLoopOn) ? <ArrayTimer time={[25*60,5*60,25*60,5*60,25*60,5*60,25*60,15*60]}/> : <Timer time={this.state.count}/>}
             </div>
         );
     }
