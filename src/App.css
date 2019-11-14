@@ -5,3 +5,18 @@ body {
   text-align: center;
   background-color: #7bc9ff;
 }
+.infoButton {
+  position: absolute;
+  border: white;
+  color: black;
+  font-size: x-large;
+  background-color: white;
+  margin-top: -24px;
+  border: unset;
+  box-shadow: 3px 4px 5px 2px hsla(0,0%,100%,.1), 1px 2px 2px 1px hsla(0,0%,78.4%,.3);
+  cursor: pointer;
+  margin-left: -28px;
+  border-radius: 25px;
+  padding: 16px 8px;
+  font-weight: 700;
+}

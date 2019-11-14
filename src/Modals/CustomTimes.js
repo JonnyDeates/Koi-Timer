@@ -5,23 +5,93 @@ import {Context} from "../Context/Context";
 class CustomTimes extends React.Component {
     static contextType = Context;
     state = {
-        active: this.props.active
+        active: this.props.active,
+        timeScaleMinutes: true,
+        pomodoro: 25,
+        shortBreak: 5,
+        longBreak: 15
     };
-    componentDidUpdate(prevProps) {
+
+    handlePomodoro(e) {
+        this.setState({pomodoro: e.target.value});
+        this.context.setPomodoro(this.convertTime(e.target.value));
+    }
+
+    handleShortBreak(e) {
+        this.setState({shortBreak: e.target.value});
+        this.context.setShortBreak(this.convertTime(e.target.value));
+    }
+
+    handleLongBreak(e) {
+        this.setState({longBreak: e.target.value});
+        this.context.setLongBreak(this.convertTime(e.target.value));
+    }
+
+    handleTimeScale() {
+        this.setState({timeScaleMinutes: !this.state.timeScaleMinutes});
+    }
+
+    convertTime(num) {
+        if (this.state.timeScaleMinutes) {
+            return parseFloat(Math.round(num * 60).toFixed(1));
+        } else {
+            return parseInt(num);
+        }
+    }
+
+    componentDidUpdate(prevProps, prevState) {
         if (this.props.active !== prevProps.active) {
             this.setState({active: this.props.active});
         }
+        if (this.state.timeScaleMinutes !== prevState.timeScaleMinutes) {
+            if (this.state.timeScaleMinutes) {
+                this.setState({
+                    pomodoro: this.state.pomodoro / 60,
+                    shortBreak: this.state.shortBreak / 60,
+                    longBreak: this.state.longBreak / 60
+                })
+            } else {
+                this.setState({pomodoro: this.state.pomodoro * 60,
+                    shortBreak: this.state.shortBreak * 60,
+                    longBreak: this.state.longBreak * 60})
+            }
+        }
     }
+
     render() {
         return (
-            <div className={(!this.state.active) ? 'active' : 'modalWrapper'} onClick={this.props.setCustomTimes}>
-                <div className="presets" >
+            <div className={(!this.state.active) ? 'active' : 'modalWrapper'}>
+                <div className={(!this.state.active) ? 'active' : 'modalWrapper'} onClick={this.props.setCustomTimes}/>
+                <div className="presets">
                     <h1>Custom Times</h1>
-                    <div onClick={()=> this.context.setTimerArray([25,5,25,5,25,5,25,20,25,5,25,5,25,5,25,20,25])}>
-                        <h2>The Standard</h2>
-                        <p>The standard model of the pomodoro drone.</p>
-                        <p>Time Length: 4.5 hours</p>
-                        <p>Times: <span>[25,5,25,5,25,5,25,20,25,5,25,5,25,5,25,20,25]</span></p>
+                    <div>
+                        <h2>Set Timers</h2>
+                        <div className="radio">
+                            <label>
+                                <input type="radio" value="minutes" onChange={() => this.handleTimeScale()}
+                                       checked={this.state.timeScaleMinutes}/>
+                                Minutes
+                            </label>
+                            <label>
+                                <input type="radio" value="seconds" onChange={() => this.handleTimeScale()}
+                                       checked={!this.state.timeScaleMinutes}/>
+                                Seconds
+                            </label>
+                        </div>
+                        <label>
+                            Pomodoro:
+                            <input type="number" value={this.state.pomodoro} onChange={(e) => this.handlePomodoro(e)}/>
+                        </label>
+                        <label>
+                            Short Break:
+                            <input type="number" value={this.state.shortBreak}
+                                   onChange={(e) => this.handleShortBreak(e)}/>
+                        </label>
+                        <label>
+                            Long Break:
+                            <input type="number" value={this.state.longBreak}
+                                   onChange={(e) => this.handleLongBreak(e)}/>
+                        </label>
                     </div>
                 </div>
             </div>

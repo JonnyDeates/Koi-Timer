@@ -7,15 +7,14 @@ class Pomodoro extends React.Component {
     static contextType = Context;
     state = {
         count: 25*60,
-        isOnLoop: false
     };
     setTimer(newTime){
-        if(this.state.isOnLoop) {
-            this.setState({count: newTime, isOnLoop: false})
+        if(this.context.isLoopOn) {
+            this.setState({count: newTime});
+            this.context.toggleLoop();
         } else {
             this.setState({count: newTime})
         }
-        console.log(this.context)
     }
     render(){
         return (

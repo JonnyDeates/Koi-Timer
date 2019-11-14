@@ -1,0 +1,54 @@
+.todolist{
+    background-color: #e6eef5;
+    padding: 2rem 0;
+}
+.todolist > form > label, .todolist > form > label >input {
+    font-size: x-large;
+}
+.todolist > form > label >input {
+    max-width: 50vw;
+}
+.todolist > form > button {
+    margin-left: 16px;
+    border: 1px lightgray solid;
+    border-radius: 25px;
+    padding: 2px 8px;
+    font-size: x-large;
+    cursor: pointer;
+}
+.todolist > div{
+    max-height: 100vh;
+    overflow-y: scroll;
+    max-width: 80vw;
+    min-height: 50vh;
+    text-align: center;
+    margin: auto;
+}
+.todolist-item {
+    display: flex;
+    justify-content: space-evenly;
+    position: relative;
+    border-radius: 25px;
+    font-size: large;
+}
+.todolist-item > button{
+    margin: 16px 0;
+    border: 1px lightgray solid;
+    border-radius: 25px;
+    padding: 4px 8px;
+    font-size: large;
+    cursor: pointer;
+}
+.todolist-item > p{
+     max-width: 50vw;
+     min-width: 50vw;
+ }
+.todolist-item > input {
+    margin: auto 0;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+.tinted{
+    background-color: #00000033;
+}

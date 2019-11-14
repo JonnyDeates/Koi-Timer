@@ -86,6 +86,7 @@ class ArrayTimer extends React.Component {
     }
 
     skipTimer() {
+        clearInterval(this.state.Interval);
         if (this.state.currentTimer + 1 <= this.state.time.length) {
             this.setState({
                 count: this.state.time[this.state.currentTimer],
@@ -93,7 +94,7 @@ class ArrayTimer extends React.Component {
                 currentTimer: this.state.currentTimer + 1
             });
         } else {
-            this.setState({count: this.state.time[0], isOn: false, currentTimer: 0})
+            this.setState({count: this.state.time[0], isOn: false, currentTimer: 1})
         }
 
     }
@@ -103,6 +104,7 @@ class ArrayTimer extends React.Component {
         const title = getTime(count);
         return (
             <div className="timer">
+                <p>{this.state.currentTimer}</p>
                 <h1>{title}</h1>
                 <TitleComponent title={title + ' Koi Timer'}/>
                 <audio ref="audio">

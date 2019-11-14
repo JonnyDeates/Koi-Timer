@@ -7,15 +7,18 @@
 }
 .info > div {
     margin: auto 0;
+    min-width: 60vw;
+    max-width: 60vw;
 }
 .info > button {
-    margin: 7rem 16px 7rem 16px;
+    margin: auto 16px;
     font-size: xx-large;
     font-weight: 900;
+    max-height: 128px;
     border: unset;
     background-color: unset;
     border-radius: 25px;
-    padding: 0px 16px;
+    padding: 8px 16px;
     cursor: pointer;
 }
 .info > button:hover {

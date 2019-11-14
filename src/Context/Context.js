@@ -9,4 +9,7 @@ export const Context = React.createContext({
     longBreak: 15*60,
     toggleLoop: () => {},
     setTimerArray: () => {},
+    setPomodoro: () => {},
+    setShortBreak: () => {},
+    setLongBreak: () => {},
 });

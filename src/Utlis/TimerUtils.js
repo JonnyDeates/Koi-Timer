@@ -8,7 +8,7 @@ export function zeroPadding(num) {
 
 export function getMinutes(count) {
     if (count >= 60) {
-        return zeroPadding(Math.floor((count / 60))) + ':'
+        return zeroPadding(Math.floor((count%3600/60))) + ':'
     } else {
         return ''
     }

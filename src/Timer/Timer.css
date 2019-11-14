@@ -2,6 +2,14 @@
     margin: 6rem 0;
     font-size: 3.5em;
 }
+.timer > p {
+    color: gray;
+    position: relative;
+    justify-content: flex-end;
+    margin: 0 16px;
+    /* width: fit-content; */
+    display: flex;
+}
 .timer-buttons {
     display: flex;
     justify-content: space-evenly;
