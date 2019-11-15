@@ -5,6 +5,11 @@ import PresetSection from "./PresetSection/PresetSection";
 
 class Presets extends React.Component {
     static contextType = Context;
+    constructor(props) {
+        super(props);
+        this.handleCurrentActive = this.handleCurrentActive.bind(this);
+    }
+
     state = {
         active: this.props.active,
         currentActive: 0
@@ -16,6 +21,10 @@ class Presets extends React.Component {
         }
     }
 
+    handleCurrentActive(i){
+        console.log(i, this.state.currentActive)
+        this.setState({currentActive: i})
+    }
     render() {
         const data = [{
             title: 'The Standard',
@@ -38,7 +47,9 @@ class Presets extends React.Component {
                 <div className="presets">
                     <h1> Presets </h1>
                     {data.map((obj, i) => <PresetSection key={i} title={obj.title} desc={obj.desc}
-                                                         setTimerArray={this.context.setTimerArray} timeArray={obj.timeArray}
+                                                         setTimerArray={this.context.setTimerArray}
+                                                         timeArray={obj.timeArray} index={i}
+                                                         handleCurrentActive={this.handleCurrentActive}
                                                          active={(this.state.currentActive === i)}/>)}
                 </div>
             </div>

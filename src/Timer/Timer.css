@@ -6,8 +6,7 @@
     color: gray;
     position: relative;
     justify-content: flex-end;
-    margin: 0 16px;
-    /* width: fit-content; */
+    margin: 0 16px -2em 16px;
     display: flex;
 }
 .timer-buttons {

@@ -62,9 +62,9 @@ class CustomTimes extends React.Component {
         return (
             <div className={(!this.state.active) ? 'active' : 'modalWrapper'}>
                 <div className={(!this.state.active) ? 'active' : 'modalWrapper'} onClick={this.props.setCustomTimes}/>
-                <div className="presets">
+                <div className="customtimes">
                     <h1>Custom Times</h1>
-                    <div>
+                    <div className="customtimes-form">
                         <h2>Set Timers</h2>
                         <div className="radio">
                             <label>

@@ -2,6 +2,12 @@
     background-color: #e6eef5;
     padding: 2rem 0;
 }
+.todolist > p {
+    position: absolute;
+    left: 16px;
+    margin: 4px;
+    color: gray;
+}
 .todolist > form > label, .todolist > form > label >input {
     font-size: x-large;
 }

@@ -1,8 +1,9 @@
 {
   "name": "koitimer",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "private": true,
   "dependencies": {
+    "cuid": "^2.1.6",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-helmet": "^5.2.1",

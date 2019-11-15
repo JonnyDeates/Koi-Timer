@@ -12,13 +12,15 @@
 .active {
     display: none;
 }
-.presets {
+.presets, .customtimes {
     background-color: white;
     margin-top: 1rem;
     border-radius: 25px;
-    width: fit-content;
+    height: 85vh;
+    width: 75vw;
     padding: 16px;
     z-index: 2;
+    overflow-y: scroll;
 }
 .presets > div:hover {
     background-color: lightgray;
@@ -28,4 +30,21 @@
     padding: 16px;
     cursor: pointer;
     border-radius: 25px;
+}
+.presets > .tinted {
+    background-color: lightgray;
+}
+.customtimes {
+
+}
+.customtimes-form > label{
+    display: block;
+    margin: 20px 0;
+    font-size: large;
+
+}
+.customtimes-form > label > input{
+    font-size: large;
+    min-width: 20vw;
+    max-width: 20vw;
 }

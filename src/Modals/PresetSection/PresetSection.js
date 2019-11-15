@@ -19,10 +19,20 @@ class PresetSection extends React.Component {
         }
         return x/60;
     }
+
+    setTimer(){
+        this.state.setTimerArray(this.convertArray(this.state.timeArray));
+        this.props.handleCurrentActive(this.props.index);
+    }
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props.active !== prevProps.active) {
+            this.setState({active: this.props.active});
+        }
+    }
     render() {
 
         return (
-            <div className={(this.state.active) ? '':''} onClick={() => this.state.setTimerArray(this.convertArray(this.state.timeArray))}>
+            <div className={(this.state.active) ? 'tinted':''} onClick={() => this.setTimer()}>
                 <h2>{this.state.title}</h2>
                 <p>{this.state.desc}</p>
                 <p>Time Length: {this.sumArray(this.state.timeArray)} hours</p>
