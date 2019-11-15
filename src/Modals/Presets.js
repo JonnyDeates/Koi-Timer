@@ -45,6 +45,7 @@ class Presets extends React.Component {
             <div className={(!this.state.active) ? 'active' : 'modalWrapper'}>
                 <div className={(!this.state.active) ? 'active' : 'modalWrapper'} onClick={this.props.setPresets}/>
                 <div className="presets">
+                    <button onClick={this.props.setPresets}>X</button>
                     <h1> Presets </h1>
                     {data.map((obj, i) => <PresetSection key={i} title={obj.title} desc={obj.desc}
                                                          setTimerArray={this.context.setTimerArray}

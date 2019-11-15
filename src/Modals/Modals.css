@@ -17,10 +17,37 @@
     margin-top: 1rem;
     border-radius: 25px;
     height: 85vh;
-    width: 75vw;
+    width: fit-content;
+    max-width: 85vw;
     padding: 16px;
     z-index: 2;
+
+    animation: 2s popIn forwards;
+}
+.presets {
     overflow-y: scroll;
+}
+.presets::-webkit-scrollbar-thumb {
+    border: unset;
+    background: lightgray;
+    border-radius: 25px;
+
+}
+.presets::-webkit-scrollbar {
+    border: unset;
+    background: transparent;
+    max-height: 85%;
+}
+.presets > button, .customtimes > button {
+    display: flex;
+    margin: 0 5px -25px 5px;
+    border-radius: 25px;
+    border: 1px lightgray solid;
+    background-color: lightgray;
+    cursor: pointer;
+    font-size: large;
+    padding: 4px 8px;
+    font-weight: 700;
 }
 .presets > div:hover {
     background-color: lightgray;
@@ -47,4 +74,26 @@
     font-size: large;
     min-width: 20vw;
     max-width: 20vw;
+}
+.radio {
+    display: flex;
+    justify-content: space-evenly;
+}
+.radio > label{
+font-size: larger;
+    cursor: pointer;
+}
+.radio > label > input{
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+}
+@keyframes popIn {
+    0% {
+        transform: scale(0);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }

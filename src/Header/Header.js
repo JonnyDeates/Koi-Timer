@@ -31,7 +31,7 @@ class Header extends React.Component {
                 <div className="nav">
                     <button onClick={() => this.setState({customTimes: true})}>Custom Timer</button>
                     <button onClick={() => this.setState({presets: true})}>Presets</button>
-                    <button onClick={() => this.setState({sounds: true})}>Sounds</button>
+                    {/*<button onClick={() => this.setState({sounds: true})}>Sounds</button>*/}
                 </div>
                 <Presets setPresets={this.setPresets} active={this.state.presets}/>
                 <CustomTimes setCustomTimes={this.setCustomTimes} active={this.state.customTimes}/>

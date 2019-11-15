@@ -9,11 +9,15 @@
     margin: 0 16px;
     border-bottom-left-radius: 16px;
     border-bottom-right-radius: 16px;
-    padding: 8px;
-    background-color: #ffffffdd;
     border: unset;
     box-shadow: 3px 4px 5px 2px hsla(0,0%,100%,.1), 1px 2px 2px 1px hsla(0,0%,78.4%,.3);
     cursor: pointer;
+    color: black;
+    font-size: large;
+    background-color: white;
+    border: unset;
+    padding: 12px;
+    font-weight: 700;
 }
 .header {
     padding: 16px

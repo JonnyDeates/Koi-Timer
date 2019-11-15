@@ -36,7 +36,7 @@ class PresetSection extends React.Component {
                 <h2>{this.state.title}</h2>
                 <p>{this.state.desc}</p>
                 <p>Time Length: {this.sumArray(this.state.timeArray)} hours</p>
-                <p>Times: <span>{this.state.timeArray.map((num,i)=> (i!==this.state.timeArray.length-1)? (num+',') : num)}</span></p>
+                <p>Times: <span>{this.state.timeArray.map((num,i)=> (i!==this.state.timeArray.length-1)? (num+', ') : num)}</span></p>
             </div>
         );
     }

@@ -31,7 +31,7 @@ class TodoList extends React.Component {
     }
     handleSubmit(e){
         e.preventDefault();
-        this.setState({value: '', goals: [{goal: this.state.value, checked: false, id: cuid()}, ...this.state.goals]});
+        this.setState({value: '', goals: [...this.state.goals, {goal: this.state.value, checked: false, id: cuid()} ]});
     }
     deleteGoal(ID) {
         let {goal, checked, id} = this.state.goals.find(g=> g.id === ID);

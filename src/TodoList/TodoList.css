@@ -2,6 +2,7 @@
     background-color: #e6eef5;
     padding: 2rem 0;
 }
+
 .todolist > p {
     position: absolute;
     left: 16px;
@@ -30,12 +31,24 @@
     text-align: center;
     margin: auto;
 }
+.todolist > div::-webkit-scrollbar-thumb {
+    border: unset;
+    background: lightgray;
+    border-radius: 25px;
+
+}
+.todolist >div::-webkit-scrollbar {
+    border: unset;
+    background: transparent;
+    max-height: 85%;
+}
 .todolist-item {
     display: flex;
     justify-content: space-evenly;
     position: relative;
     border-radius: 25px;
     font-size: large;
+    animation: 2s popIn forwards;
 }
 .todolist-item > button{
     margin: 16px 0;
@@ -57,4 +70,14 @@
 }
 .tinted{
     background-color: #00000033;
+}
+
+@keyframes popIn {
+    0% {
+        transform: scale(0);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }

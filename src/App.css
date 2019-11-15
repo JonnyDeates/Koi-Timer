@@ -1,6 +1,17 @@
 body {
 
 }
+body::-webkit-scrollbar-thumb {
+  border: unset;
+  background: lightgray;
+  border-radius: 25px;
+
+}
+body::-webkit-scrollbar {
+  border: unset;
+  background: transparent;
+  max-height: 85%;
+}
 .App {
   text-align: center;
   background-color: #7bc9ff;
