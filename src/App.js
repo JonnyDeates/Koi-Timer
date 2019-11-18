@@ -5,7 +5,7 @@ import Pomodoro from "./Pomodoro/Pomodoro";
 import {Context} from "./Context/Context"
 import Info from "./Info/Info";
 import Footer from "./Footer/Footer";
-import sound from './assets/analog_alarm_clock.wav'
+import sound from './Assets/Sounds/analog_alarm_clock.wav'
 import TodoList from "./TodoList/TodoList";
 class App extends React.Component {
     constructor(props) {
