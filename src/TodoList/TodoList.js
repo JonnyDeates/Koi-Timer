@@ -38,7 +38,7 @@ class TodoList extends React.Component {
         if(checked) {
             this.setState({goals: this.state.goals.filter(g=> g.id !== id), checkedAmt: this.state.checkedAmt-1})
         } else {
-            this.setState({goals: this.state.goals.filter(g=> g.id !== id), checkedAmt: this.state.checkedAmt+1})
+            this.setState({goals: this.state.goals.filter(g=> g.id !== id), checkedAmt: this.state.checkedAmt})
         }
 
     }
