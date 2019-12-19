@@ -7,7 +7,7 @@ class TodoList extends React.Component {
         value: '',
         goals: [],
         checkedAmt: 0
-    };
+    }; // Data
     constructor(props) {
         super(props);
         this.handleChecked = this.handleChecked.bind(this);
