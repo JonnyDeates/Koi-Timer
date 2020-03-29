@@ -1,12 +1,15 @@
 .info {
     background-color: aliceblue;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     position: relative;
     min-height: 50vh;
-    max-height: fit-content;
+    /*height: 450px;*/
     overflow: hidden;
     animation: expandOut 3s forwards;
+}
+.explanation p {
+    text-align: justify;
 }
 .info > div {
     margin: auto 0;
@@ -14,18 +17,30 @@
     max-width: 60vw;
 }
 .info > button {
-    margin: auto 16px;
+    margin: 0;
     font-size: xx-large;
     font-weight: 900;
-    max-height: 128px;
+    height: inherit;
+    width: 10vw;
     border: unset;
     background-color: unset;
-    border-radius: 25px;
-    padding: 8px 16px;
     cursor: pointer;
+    position: relative;
+}
+.info > button:first-child {
+    left: 0;
+}
+.info > button:last-child {
+    right: 0;
 }
 .info > button:hover {
     background-color: #00000011;
+}
+.info > button img {
+    width: 25px;
+}
+.info > button:first-child img {
+    transform: rotateZ(180deg);
 }
 .info > div > ol, .info > div > ul {
     text-align: left;

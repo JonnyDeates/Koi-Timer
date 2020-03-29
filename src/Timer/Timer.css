@@ -2,12 +2,51 @@
     margin: 6rem 0;
     font-size: 3.5em;
 }
-.timer > p {
+.timer-elapsed {
     color: gray;
+    width: 90vw;
     position: relative;
     justify-content: flex-end;
-    margin: 0 16px -2em 16px;
+    /*margin: 0 16px -2em 16px;*/
     display: flex;
+    background-color: #e6eef5;
+    margin: 1em auto;
+    height: 1em;
+    border-radius: 10px;
+}
+.timer-elapsed > div {
+    border-right: 1px solid #00000022;
+    border-left: 1px solid #00000022;
+    cursor: pointer;
+}
+.timer-elapsed > div:first-child {
+    border-left: unset;
+}
+.timer-elapsed > div:last-child {
+    border-right: unset;
+}
+.timer-elapsed > div:hover {
+    background-color: #6da5d877;
+}
+.timer-elapsed > .grey {
+    background-color: #72b2e6dd;
+}
+.timer-elapsed > .grey:first-child {
+    border-radius: 10px 0 0 10px;
+}
+.timer-elapsed > .active {
+    background-color: #6da5d8;
+    display: unset;
+}
+.timer-elapsed > .active:hover {
+    background-color: #6da5d8;
+    cursor: unset;
+}
+.timer-elapsed > .active:first-child {
+    border-radius: 10px 0 0 10px;
+}
+.timer-elapsed > .active:last-child {
+    border-radius: 0 10px 10px 0;
 }
 .timer-buttons {
     display: flex;
@@ -24,4 +63,15 @@
     border-radius: 25px;
     padding: 16px;
     font-weight: 700;
+}
+
+@media (min-width: 480px) {
+    .timer-elapsed {
+        width: 70vw;
+    }
+}
+@media (min-width: 767px) {
+    .timer-elapsed {
+        width: 50vw;
+    }
 }

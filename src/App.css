@@ -28,6 +28,11 @@ body::-webkit-scrollbar {
   cursor: pointer;
   margin-left: -28px;
   border-radius: 25px;
-  padding: 16px 8px;
+  padding: 16px 8px 8px 8px;
   font-weight: 700;
+}
+.infoButton > img {
+  width: 25px;
+  opacity: .5;
+
 }

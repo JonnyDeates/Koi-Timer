@@ -1,7 +1,7 @@
 import React from 'react';
 import './Info.css'
 import InfoSection from "./InfoSection/InfoSection";
-
+import arrow from '../Assets/icons/Arrow.png'
 class Info extends React.Component {
 
 
@@ -18,7 +18,7 @@ class Info extends React.Component {
             'distracted.\n' +
             'Following this leads to accomplishing what we want to do in the way we want to do it, and to enable\n' +
             'us to improve continually the way we work or study.',
-            style: 'explaination'
+            style: 'explanation'
         },
             {
                 title: 'The Pomodoro Technique will provide a simple tool/process for improving productivity (your own and that of\n' +
@@ -60,10 +60,14 @@ class Info extends React.Component {
         return (
             <div className="info">
                 <button
-                    onClick={() => this.setState({currentShown: (this.state.currentShown - 1 >= 0) ? this.state.currentShown - 1 : infoList.length - 1})}> {'<'} </button>
+                    onClick={() => this.setState({currentShown: (this.state.currentShown - 1 >= 0) ? this.state.currentShown - 1 : infoList.length - 1})}>
+                    <img src={arrow} alt="<"/>
+                </button>
                 {infoList[this.state.currentShown]}
                 <button
-                    onClick={() => this.setState({currentShown: (this.state.currentShown + 1 < infoList.length) ? this.state.currentShown + 1 : 0})}> {'>'} </button>
+                    onClick={() => this.setState({currentShown: (this.state.currentShown + 1 < infoList.length) ? this.state.currentShown + 1 : 0})}>
+                    <img src={arrow} alt=">"/>
+                </button>
             </div>
         );
     }

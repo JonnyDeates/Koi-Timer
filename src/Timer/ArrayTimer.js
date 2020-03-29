@@ -96,15 +96,49 @@ class ArrayTimer extends React.Component {
         } else {
             this.setState({count: this.state.time[0], isOn: false, currentTimer: 1})
         }
+    }
 
+    backTimer() {
+        clearInterval(this.state.Interval);
+        if (this.state.currentTimer - 1 >= 1) {
+            this.setState({
+                count: this.state.time[this.state.currentTimer - 2],
+                isOn: false,
+                currentTimer: this.state.currentTimer - 1
+            });
+        } else {
+            this.setState({
+                count: this.state.time[this.state.time.length - 1],
+                isOn: false,
+                currentTimer: this.state.time.length
+            })
+        }
+    }
+
+    setTimer(i) {
+        clearInterval(this.state.Interval);
+        this.setState({
+            count: this.state.time[i],
+            isOn: false,
+            currentTimer: i + 1
+        });
     }
 
     render() {
         const {count} = this.state;
         const title = getTime(count);
+        const sumTime = this.state.time.reduce((a, b) => {
+            return a + b;
+        }, 0);
         return (
             <div className="timer">
-                <p>{this.state.currentTimer}</p>
+                <div className={'timer-elapsed'}>{this.state.time.map((x, i) =>
+                    <div key={i}
+                         className={((i) < this.state.currentTimer - 1) ? 'grey' : (i === this.state.currentTimer - 1) ? 'active' : ''}
+                         style={{width: (x / sumTime) * 100 + '%'}}
+                         onClick={()=>this.setTimer(i)}
+                    />)}</div>
+                {/*{this.state.currentTimer}</div>*/}
                 <h1>{title}</h1>
                 <TitleComponent title={title + ' Koi Timer'}/>
                 <audio ref="audio">
@@ -113,6 +147,8 @@ class ArrayTimer extends React.Component {
                 <div className='timer-buttons'>
                     {(this.state.isOn) ? <button onClick={() => this.stopInterval()}> Pause </button> :
                         <button onClick={() => this.startInterval()}> Start </button>}
+                    {/*<button onClick={() => this.backTimer()}>Back</button>*/}
+                    <button onClick={() => this.backTimer()}>Back</button>
                     <button onClick={() => this.skipTimer()}>Skip</button>
                     <button onClick={() => this.restartTimer()}> Restart</button>
                 </div>

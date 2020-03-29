@@ -1,6 +1,7 @@
 import React from 'react';
 import './Modals.css'
 import {Context} from "../Context/Context";
+import {round} from "../Utlis/TimerUtils";
 
 class CustomTimes extends React.Component {
     static contextType = Context;
@@ -9,21 +10,22 @@ class CustomTimes extends React.Component {
         timeScaleMinutes: true,
         pomodoro: 25,
         shortBreak: 5,
-        longBreak: 15
+        longBreak: 15,
+        customTimeArray: [25]
     };
 
     handlePomodoro(e) {
-        this.setState({pomodoro: e.target.value});
+        this.setState({pomodoro: parseFloat(e.target.value)});
         this.context.setPomodoro(this.convertTime(e.target.value));
     }
 
     handleShortBreak(e) {
-        this.setState({shortBreak: e.target.value});
+        this.setState({shortBreak: parseFloat(e.target.value)});
         this.context.setShortBreak(this.convertTime(e.target.value));
     }
 
     handleLongBreak(e) {
-        this.setState({longBreak: e.target.value});
+        this.setState({longBreak: parseFloat(e.target.value)});
         this.context.setLongBreak(this.convertTime(e.target.value));
     }
 
@@ -51,13 +53,26 @@ class CustomTimes extends React.Component {
                     longBreak: this.state.longBreak / 60
                 })
             } else {
-                this.setState({pomodoro: this.state.pomodoro * 60,
+                this.setState({
+                    pomodoro: this.state.pomodoro * 60,
                     shortBreak: this.state.shortBreak * 60,
-                    longBreak: this.state.longBreak * 60})
+                    longBreak: this.state.longBreak * 60
+                })
             }
         }
     }
 
+    addPreset() {
+        if(this.state.customTimeArray.length >= 2) {
+            this.context.addPreset({
+                title: `Custom Preset ${this.context.presets.length - 2}`,
+                desc: 'This is a client added preset.',
+                timeArray: this.state.customTimeArray
+            })
+        } else {
+            alert('The time sequence is not large enough.')
+        }
+    }
     render() {
         return (
             <div className={(!this.state.active) ? 'active' : 'modalWrapper'}>
@@ -94,7 +109,27 @@ class CustomTimes extends React.Component {
                                    onChange={(e) => this.handleLongBreak(e)}/>
                         </label>
                     </div>
+                    <div>
+                        <h2> Custom Preset</h2>
+                        <div>
+                            <button onClick={() => this.setState({customTimeArray: [...this.state.customTimeArray, this.state.pomodoro]})}>Pomodoro</button>
+                            <button onClick={() => this.setState({customTimeArray: [...this.state.customTimeArray, this.state.shortBreak]})}>Short Break</button>
+                            <button onClick={() => this.setState({customTimeArray: [...this.state.customTimeArray, this.state.longBreak]})}>Long Break</button>
+                        </div>
+                        <div>
+                            <p>Length: <span>{round(this.state.customTimeArray.reduce((a, b) => {
+                                return a + b;
+                            }, 0) / 60,2)} hours</span></p>
+                            <p>Times: <span>[{this.state.customTimeArray.map((num,i)=>
+                                (i !== this.state.customTimeArray.length-1)? (num+', ') : num)}]</span></p>
+                        </div>
+                        <div>
+                            <button onClick={() => this.setState({customTimeArray: []})}>Clear</button>
+                            <button onClick={() => this.addPreset()}>Submit</button>
+                        </div>
+                    </div>
                 </div>
+
             </div>
         );
     }
