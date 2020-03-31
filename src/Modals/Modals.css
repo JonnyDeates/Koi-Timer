@@ -16,6 +16,7 @@
 
 .presets, .customtimes {
     background-color: white;
+    overflow-y: scroll;
     margin-top: 1rem;
     border-radius: 25px;
     height: 85vh;
@@ -39,10 +40,6 @@
     max-width: 20vw;
     margin-left: 16px;
     border-radius: 8px;
-}
-
-.presets, .customtimes {
-    overflow-y: scroll;
 }
 
 .presets::-webkit-scrollbar-thumb, .customtimes::-webkit-scrollbar-thumb {
