@@ -14,11 +14,7 @@ class PresetSection extends React.Component {
         return arr.map(num => (num*60))
     }
     sumArray(arr) {
-        let x = 0;
-        for(let num of arr) {
-            x = x+num;
-        }
-        return x/60;
+        return arr.reduce((a,b)=> a+b) / 60;
     }
 
     setTimer(){
@@ -29,12 +25,21 @@ class PresetSection extends React.Component {
         if (this.props.active !== prevProps.active) {
             this.setState({active: this.props.active});
         }
+        if(this.props.timeArray !== prevProps.timeArray){
+            this.setState({timeArray: this.props.timeArray});
+        }
+        if (this.props.title !== prevProps.title) {
+            this.setState({title: this.props.title});
+        }
+        if (this.props.desc !== prevProps.desc) {
+            this.setState({desc: this.props.desc});
+        }
     }
     render() {
 
         return (
             <div className={(this.state.active) ? 'tinted':''} onClick={() => this.setTimer()}>
-                {(this.props.index > 2) ? <button onClick={()=> this.props.deletePreset(this.props.index)}>X</button> : ''}
+                {(this.props.index > 2) ? <button onClick={()=> this.props.deletePreset(this.props.id)}>X</button> : ''}
                 <h2>{this.state.title}</h2>
                 <p>{this.state.desc}</p>
                 <p>Time Length: {round(this.sumArray(this.state.timeArray),2)} hours</p>

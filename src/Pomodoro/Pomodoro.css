@@ -3,14 +3,14 @@
 }
 .body button {
     color: black;
-    font-size: x-large;
+    font-size: medium;
     background-color: white;
-    margin: 4px 16px;
+    margin: 4px 4px;
     border: unset;
     box-shadow: 3px 4px 5px 2px hsla(0,0%,100%,.1), 1px 2px 2px 1px hsla(0,0%,78.4%,.3);
     cursor: pointer;
     border-radius: 10px;
-    padding: 16px;
+    padding: 8px;
     font-weight: 700;
 }
 .body button:hover {
@@ -21,4 +21,20 @@
 }
 .timer {
     font-size: xx-large;
+}
+@media (min-width: 480px) {
+    .body button {
+        font-size: large;
+        margin: 4px 8px;
+        border-radius: 10px;
+        padding: 10px;
+    }
+}
+@media (min-width: 767px) {
+    .body button {
+        font-size: x-large;
+        margin: 4px 16px;
+        border-radius: 10px;
+        padding: 16px;
+    }
 }

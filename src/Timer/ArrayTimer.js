@@ -20,7 +20,7 @@ class ArrayTimer extends React.Component {
             if (this.state.Interval) {
                 this.componentWillUnmount();
             }
-            this.setState({time: this.props.time, count: this.props.time[prevState.currentTimer - 1], isOn: false});
+            this.setState({time: this.props.time, count: this.props.time[0], currentTimer: 1, isOn: false});
         }
     }
 
@@ -68,9 +68,7 @@ class ArrayTimer extends React.Component {
     }
 
     startInterval() {
-        this.state.isOn = true;
-        this.setState({isOn: true});
-        this.componentDidMount();
+        this.setState({isOn: true}, () => this.componentDidMount());
     }
 
     restartTimer() {

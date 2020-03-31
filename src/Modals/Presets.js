@@ -1,17 +1,24 @@
 import React, {Component} from 'react';
 import './Modals.css'
-import {Context} from "../Context/Context";
 import PresetSection from "./PresetSection/PresetSection";
 
 class Presets extends Component {
-    static contextType = Context;
+
     state = {
         active: this.props.active,
+        presets: []
     };
+
+    componentDidMount() {
+        this.setState({presets: this.props.presets})
+    }
 
     componentDidUpdate(prevProps) {
         if (this.props.active !== prevProps.active) {
             this.setState({active: this.props.active});
+        }
+        if(this.props.presets !== prevProps.presets){
+            this.setState({presets: this.props.presets})
         }
     }
     render() {
@@ -21,12 +28,10 @@ class Presets extends Component {
                 <div className="presets">
                     <button onClick={this.props.setPresets}>X</button>
                     <h1> Presets </h1>
-                    {this.context.presets.map((obj, i) => <PresetSection key={i} title={obj.title} desc={obj.desc}
-                                                         setTimerArray={this.context.setTimerArray}
-                                                         timeArray={obj.timeArray} index={i}
-                                                         handleCurrentActive={this.context.handleCurrentActive}
-                                                                         deletePreset={this.context.deletePreset}
-                                                         active={(this.context.currentPresetActive === i)}/>)}
+                    {this.state.presets.map((obj, i) => <PresetSection key={i} title={obj.title} desc={obj.desc}
+                                                         timeArray={obj.timeArray} index={i} id={obj.id} setTimerArray={this.props.setTimerArray}
+                                                         handleCurrentActive={this.props.handleCurrentActive} deletePreset={this.props.deletePreset}
+                                                         active={(this.props.currentPresetActive === i)}/>)}
                 </div>
             </div>
         );

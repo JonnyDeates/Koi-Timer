@@ -1,26 +1,27 @@
 .nav {
-    justify-content: flex-end;
+    justify-content: space-evenly;
     display: flex;
     position: absolute;
-    right: 0;
+    width: 100%;
     top: 0;
+    left: 0;
+    background-color: white;
 }
 .nav > button {
-    margin: 0 16px;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+    margin: 0 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
     border: unset;
-    box-shadow: 3px 4px 5px 2px hsla(0,0%,100%,.1), 1px 2px 2px 1px hsla(0,0%,78.4%,.3);
     cursor: pointer;
-    color: black;
-    font-size: large;
+    color: #11111188;
+    font-size: medium;
     background-color: white;
     border: unset;
-    padding: 12px;
+    padding: 8px;
     font-weight: 700;
 }
-.nav button:hover {
-    background-color: #ffffffaa;
+.nav > button:hover {
+    background-color: #00000011;
 }
 .header {
     padding: 16px
@@ -28,4 +29,54 @@
 .header > h1 {
     text-align: left;
     font-size: 2.5em;
+}
+.header > h1 > img {
+    width: 25px;
+    box-shadow: 1px 1px 2px black;
+    border-radius: 100%;
+}
+@media (min-width: 480px) {
+    .nav {
+        justify-content: flex-end;
+        display: flex;
+        position: absolute;
+        width: 100%;
+        background-color: unset;
+        right: 0;
+        top: 0;
+    }
+    .nav > button {
+        margin: 0 12px;
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+        border: unset;
+        box-shadow: 3px 4px 5px 2px hsla(0,0%,100%,.1), 1px 2px 2px 1px hsla(0,0%,78.4%,.3);
+        cursor: pointer;
+        font-size: large;
+        background-color: white;
+    }
+    .nav > button:hover {
+        background-color: #ffffffaa;
+    }
+}
+
+@media (min-width: 767px) {
+    .nav {
+        justify-content: flex-end;
+        display: flex;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    .nav > button {
+        margin: 0 16px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        border: unset;
+        box-shadow: 3px 4px 5px 2px hsla(0,0%,100%,.1), 1px 2px 2px 1px hsla(0,0%,78.4%,.3);
+        cursor: pointer;
+        font-size: large;
+        background-color: white;
+        padding: 16px;
+    }
 }

@@ -14,14 +14,21 @@
 }
 .todolist > form > label >input {
     max-width: 50vw;
+    margin-left: 16px;
+    border-radius: 8px;
 }
 .todolist > form > button {
     margin-left: 16px;
-    border: 1px lightgray solid;
-    border-radius: 25px;
+    border: 1px solid #00000022;
+    background-color: #11111122;
+    border-radius: 4px;
     padding: 2px 8px;
     font-size: x-large;
     cursor: pointer;
+    font-weight: 700;
+}
+.todolist > form > button:hover{
+    background-color: #6da5d877;
 }
 .todolist > div{
     max-height: 100vh;
@@ -52,11 +59,20 @@
 }
 .todolist-item > button{
     margin: 16px 0;
-    border: 1px lightgray solid;
-    border-radius: 25px;
-    padding: 4px 8px;
+    background-color: #11111122;
+    border: 1px solid #00000022;
+    border-radius: 4px;
+    padding: 4px 12px;
     font-size: large;
     cursor: pointer;
+    font-weight: 700;
+}
+.todolist-item > button:hover{
+background-color: #6da5d877;
+}
+.todolist-item > button > img {
+    width: 20px;
+    padding: 4px 0;
 }
 .todolist-item > p{
      max-width: 50vw;
@@ -67,6 +83,10 @@
     width: 20px;
     height: 20px;
     cursor: pointer;
+}
+.todolist-item-edit {
+    width: 50vw !important;
+    border-radius: 8px;
 }
 .tinted{
     background-color: #00000033;

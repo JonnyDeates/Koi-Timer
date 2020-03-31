@@ -1,6 +1,6 @@
 .timer > h1 {
     margin: 6rem 0;
-    font-size: 3.5em;
+    font-size: 3em;
 }
 .timer-elapsed {
     color: gray;
@@ -53,25 +53,38 @@
     justify-content: space-evenly;
 }
 .timer-buttons > button {
-    color: black;
     font-size: x-large;
-    background-color: white;
     margin: 16px;
-    border: unset;
-    box-shadow: 3px 4px 5px 2px hsla(0,0%,100%,.1), 1px 2px 2px 1px hsla(0,0%,78.4%,.3);
-    cursor: pointer;
-    border-radius: 25px;
     padding: 16px;
-    font-weight: 700;
 }
 
 @media (min-width: 480px) {
+    .timer > h1 {
+        margin: 6rem 0;
+        font-size: 3.5em;
+    }
     .timer-elapsed {
         width: 70vw;
     }
+    .timer-buttons > button {
+        font-size: x-large;
+        margin: 16px;
+        border-radius: 25px;
+        padding: 16px;
+    }
 }
 @media (min-width: 767px) {
+    .timer > h1 {
+        margin: 6rem 0;
+        font-size: 4em;
+    }
     .timer-elapsed {
         width: 50vw;
+    }
+    .timer-buttons > button {
+        font-size: x-large;
+        margin: 16px;
+        border-radius: 25px;
+        padding: 16px;
     }
 }

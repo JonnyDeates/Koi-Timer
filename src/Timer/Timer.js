@@ -31,10 +31,11 @@ class Timer extends React.Component {
                     }));
                     if (this.state.count <= 0) {
                         this.setState({ isPlaying: this.context.audioToPlay },function(){
+                            this.refs.audio.volume = this.context.volume;
                             this.refs.audio.pause();
                             this.refs.audio.load();
                             this.refs.audio.play();
-                        })
+                        });
                         clearInterval(this.state.Interval)
                     }
                 }, 1000)
@@ -58,9 +59,7 @@ class Timer extends React.Component {
     }
 
     startInterval() {
-        this.state.isOn = true;
-        this.setState({isOn: true});
-        this.componentDidMount();
+        this.setState({isOn: true}, () => this.componentDidMount());
     }
 
     restartTimer() {

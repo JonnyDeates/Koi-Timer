@@ -9,85 +9,242 @@
     z-index: 1;
     display: inline-flex;
 }
+
 .active {
     display: none;
 }
+
 .presets, .customtimes {
     background-color: white;
     margin-top: 1rem;
     border-radius: 25px;
     height: 85vh;
-    width: fit-content;
+    width: 75vw;
     max-width: 85vw;
     padding: 16px;
     z-index: 2;
-
     animation: 2s popIn forwards;
 }
-.presets {
-    overflow-y: scroll;
-}
-.presets::-webkit-scrollbar-thumb {
-    border: unset;
-    background: lightgray;
-    border-radius: 25px;
 
-}
-.presets::-webkit-scrollbar {
-    border: unset;
-    background: transparent;
-    max-height: 85%;
-}
-.presets > button, .customtimes > button {
-    display: flex;
-    margin: 0 5px -25px 5px;
-    border-radius: 25px;
-    border: 1px lightgray solid;
-    background-color: lightgray;
-    cursor: pointer;
-    font-size: large;
-    padding: 4px 8px;
-    font-weight: 700;
-}
-.presets > div:hover {
-    background-color: lightgray;
-
-}
-.presets > div {
-    padding: 16px;
-    cursor: pointer;
-    border-radius: 25px;
-}
-.presets > .tinted {
-    background-color: lightgray;
-}
-.customtimes {
-
-}
-.customtimes-form > label{
+.customtimes-form > label {
     display: block;
     margin: 20px 0;
     font-size: large;
 
 }
-.customtimes-form > label > input{
+
+.customtimes-form > label > input {
     font-size: large;
     min-width: 20vw;
     max-width: 20vw;
+    margin-left: 16px;
+    border-radius: 8px;
 }
+
+.presets, .customtimes {
+    overflow-y: scroll;
+}
+
+.presets::-webkit-scrollbar-thumb, .customtimes::-webkit-scrollbar-thumb {
+    border: unset;
+    background: lightgray;
+    border-radius: 25px;
+
+}
+
+.presets::-webkit-scrollbar, .customtimes::-webkit-scrollbar {
+    border: unset;
+    background: transparent;
+    max-height: 85%;
+}
+
+.presets > button, .customtimes > button {
+    position: absolute;
+    right: 16px;
+    border-radius: 8px;
+    border: 1px #00000022 solid;
+    background-color: #11111122;
+    cursor: pointer;
+    font-size: large;
+    padding: 4px 8px;
+    font-weight: 700;
+}
+
+.presets > button:hover, .customtimes > button:hover, .custom-preset button:hover, .presets > div > button:hover {
+    background-color: #6da5d877;
+}
+
+.presets > div:hover {
+    background-color: lightgray;
+
+}
+
+.presets > div {
+    padding: 16px;
+    cursor: pointer;
+    border-radius: 25px;
+    margin: 8px 0;
+}
+.presets > div > button {
+    position: absolute;
+    right: 32px;
+    border-radius: 8px;
+    border: 1px #00000022 solid;
+    background-color: #11111122;
+    cursor: pointer;
+    font-size: medium;
+    padding: 4px 8px;
+    font-weight: 700;
+}
+
+.presets > .tinted {
+    background-color: lightgray;
+}
+
 .radio {
     display: flex;
     justify-content: space-evenly;
 }
-.radio > label{
-font-size: larger;
+
+.radio > label {
+    font-size: larger;
     cursor: pointer;
 }
-.radio > label > input{
+
+.radio > label > input {
     cursor: pointer;
     width: 16px;
     height: 16px;
 }
+
+.sounds > h2, .customtimes h2 {
+    margin: 0
+}
+
+.sounds > h3 {
+    margin: 0;
+}
+
+.sounds > label {
+    margin: 4px 0 0 -28.5px;
+    position: absolute;
+    left: 50%;
+    font-weight: 800;
+    color: #00000077;
+    user-select: none;
+}
+
+.sounds > input {
+    -webkit-appearance: none;
+    width: 40vw;
+    height: 25px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.5;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.sounds > input:hover {
+    opacity: 0.9;
+}
+
+.sounds > input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    background: #6da5d877;
+    cursor: pointer;
+}
+
+.sounds > input::-webkit-slider-thumb:hover {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    background: #6da5d8;
+    cursor: pointer;
+    z-index: 3;
+}
+
+.sounds > input::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    background: #6da5d8;
+    cursor: pointer;
+}
+
+.sounds-button:hover {
+    background-color: unset !important;
+    cursor: unset !important;
+}
+
+.sounds-button button {
+    border-radius: 5px;
+    border: 1px #00000022 solid;
+    background-color: #11111122;
+    cursor: pointer;
+    font-size: large;
+    padding: 4px 8px;
+    font-weight: 500;
+    color: #00000077;
+}
+
+.sounds-button button:hover, .sound-section button:hover {
+    background-color: #6da5d877;
+}
+
+.sound-section {
+    width: 60vw;
+    display: inline-block;
+    cursor: unset !important;
+}
+
+.sound-section h3 {
+    font-weight: 600;
+    margin: 1em 0 0 0;
+}
+
+.sound-section p, .sounds h3 > span {
+    color: #6da5d8;
+    cursor: pointer;
+    margin: 0 0 1em 0;
+}
+
+.sound-section button, .custom-preset button {
+    border-radius: 4px;
+    border: 1px #00000022 solid;
+    background-color: #11111122;
+    cursor: pointer;
+    font-size: 0.9rem;
+    padding: 2px 4px;
+    font-weight: 500;
+    margin: 0 4px;
+    color: #00000077;
+}
+
+@media (min-width: 480px) {
+    .sound-section {
+        width: 30vw;
+    }
+
+    .sounds > input {
+        width: 30vw;
+    }
+}
+
+@media (min-width: 767px) {
+    .sound-section {
+        width: 15vw;
+    }
+    .sounds > input {
+        width: 20vw;
+    }
+}
+
 @keyframes popIn {
     0% {
         transform: scale(0);
