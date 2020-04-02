@@ -8,6 +8,10 @@
     left: 16px;
     margin: 4px;
     color: gray;
+    opacity: 0;
+}
+.todolist > h1, .todolist > form{
+    opacity: 0;
 }
 .todolist > form > label, .todolist > form > label >input {
     font-size: x-large;
@@ -37,6 +41,7 @@
     min-height: 50vh;
     text-align: center;
     margin: auto;
+    opacity: 0;
 }
 .todolist > div::-webkit-scrollbar-thumb {
     border: unset;
@@ -92,12 +97,3 @@ background-color: #6da5d877;
     background-color: #00000033;
 }
 
-@keyframes popIn {
-    0% {
-        transform: scale(0);
-    }
-
-    100% {
-        transform: scale(1);
-    }
-}

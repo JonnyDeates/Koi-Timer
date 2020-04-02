@@ -1,18 +1,27 @@
 import React from 'react';
 import './Footer.css';
+import TrackVisibility from "../Utlis/TrackVisibility";
 
 class Footer extends React.Component {
-    render() {
-        return (
-            <div className={'footer-wrapper'}>
-                <div className='footer'>
-                    <a href={'https://github.com/JonnyDeates/Koi-Timer'}>Github</a>
-                    <a href={'https://jonnydeates.com'}>Jonny Deates</a>
-                    <a href={'https://www.linkedin.com/in/jonnydeates/'}>Linked-in</a>
-                </div>
-                <p>© 2019 Jonny Deates. All rights reserved.</p>
 
-            </div>
+    state = {
+        runAnimation: false
+    };
+    render() {
+        const links = [
+            {link: 'https://github.com/JonnyDeates/Koi-Timer', text: 'Github'},
+            {link: 'https://jonnydeates.com', text: 'Jonny Deates'},
+            {link: 'https://www.linkedin.com/in/jonnydeates/', text: 'Linked-in'}
+        ]
+        return (
+
+                <div className={'footer-wrapper'} >
+                    <div className='footer'>
+                        {links.map((obj,i) => <a key={i} href={obj.link}>{obj.text} </a>)}
+                    </div>
+                    <p>© 2019 Jonny Deates. All rights reserved.</p>
+                </div>
+
         );
     }
 }

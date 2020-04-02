@@ -133,7 +133,7 @@ class ArrayTimer extends React.Component {
                 <div className={'timer-elapsed'}>{this.state.time.map((x, i) =>
                     <div key={i}
                          className={((i) < this.state.currentTimer - 1) ? 'grey' : (i === this.state.currentTimer - 1) ? 'active' : ''}
-                         style={{width: (x / sumTime) * 100 + '%'}}
+                         style={{width: (x / sumTime) * 100 + '%', animationDelay: (1 + i/(4+i) ) + 's'}}
                          onClick={()=>this.setTimer(i)}
                     />)}</div>
                 {/*{this.state.currentTimer}</div>*/}

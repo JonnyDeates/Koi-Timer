@@ -6,10 +6,22 @@
     min-height: 50vh;
     /*height: 450px;*/
     overflow: hidden;
-    animation: expandOut 3s forwards;
+}
+.explanation > h3,.goals > h3, .instructions > h3 {
+    opacity: 0;
+    animation: 1s slide-in-down forwards;
+}
+.goals {
+
+}
+.goals ul, .instructions ol, .instructions ul{
+    opacity: 0;
+    animation: 1.75s fade-in forwards;
 }
 .explanation p {
     text-align: justify;
+    opacity: 0;
+    animation: 1.75s fade-in forwards;
 }
 .info > div {
     margin: auto 0;
@@ -26,6 +38,7 @@
     background-color: unset;
     cursor: pointer;
     position: relative;
+    opacity: 0;
 }
 .info > button:first-child {
     left: 0;
@@ -44,6 +57,9 @@
 }
 .info > div > ol, .info > div > ul {
     text-align: left;
+}
+.infoButton {
+    z-index: 1;
 }
 @keyframes expandOut {
     0% {

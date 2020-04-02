@@ -29,11 +29,15 @@ class Header extends React.Component {
         this.setState({sounds: false})
     }
     render() {
+
         return (
             <div className="header">
-                <h1>K<img src={logo} alt={'o'}/>i Timer</h1>
+                <h1>K<img src={logo} alt={'o'} onAnimationEnd={()=> this.setState({isRotating: true})}
+                          style={{animation: (this.state.isRotating) ? '2s linear logo-spin infinite' : '2s slide-in-down forwards'}}/>
+                {('i Timer'.split('').map((letter, i)=>
+                    <span key={i} style={{animation: '1s ' + (0.25+(i/8)) + "s slide-in-down forwards" }}>{letter}</span>))}</h1>
                 <div className="nav">
-                    <button onClick={() => this.setState({customTimes: true})}>Custom Timer</button>
+                     <button onClick={() => this.setState({customTimes: true})} >Custom Timer</button>
                     <button onClick={() => this.setState({presets: true})}>Presets</button>
                     <button onClick={() => this.setState({sounds: true})}>Alarm</button>
                 </div>

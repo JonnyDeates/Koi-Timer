@@ -19,6 +19,16 @@
     border: unset;
     padding: 8px;
     font-weight: 700;
+    opacity: 0;
+    -webkit-animation: 1s slide-in-down forwards;
+    -o-animation: 1s slide-in-down forwards;
+    animation: 1s slide-in-down forwards;
+}
+.nav > button:nth-child(2){
+    animation-delay: 0.25s;
+}
+.nav > button:nth-child(3){
+    animation-delay: 0.5s;
 }
 .nav > button:hover {
     background-color: #00000011;
@@ -29,11 +39,17 @@
 .header > h1 {
     text-align: left;
     font-size: 2.5em;
+    color: white;
+    text-shadow: 2px 2px 3px #00000044;
+}
+.header > h1 > span{
+    opacity: 0;
 }
 .header > h1 > img {
     width: 25px;
     box-shadow: 1px 1px 2px black;
     border-radius: 100%;
+    opacity: 0;
 }
 @media (min-width: 480px) {
     .nav {

@@ -5,16 +5,20 @@
     align-items: center;
     justify-content: space-evenly;
     background-color: #7bc9ff;
+
 }
-.footer > a {
+.footer a {
     font-size: large;
     text-decoration: unset;
     color: #00000077;
+    opacity: 0;
 }
 .footer-wrapper{
     background-color: #7bc9ff;
+    overflow: hidden;
 }
-.footer-wrapper > p {
+.footer-wrapper p {
+    opacity: 0;
     margin-bottom: 0;
     padding-bottom: 16px;
     color: #00000044;
