@@ -2,7 +2,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 
 const TitleComponent = ({ title }) => {
-    var defaultTitle = 'Koi Timer';
+    let defaultTitle = 'Koi Timer';
     return (
         <Helmet>
             <title>{title ? title : defaultTitle}</title>
