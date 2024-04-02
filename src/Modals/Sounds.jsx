@@ -1,6 +1,6 @@
 import React from 'react';
 import './Modals.css'
-import {Context} from "../Context/Context";
+import {Context} from "../Context/TimerContext";
 import SoundSection from "./SoundSection/SoundSection";
 import alarm1 from '../Assets/Sounds/Alarm.wav';
 import alarm2 from '../Assets/Sounds/Alarm2.wav';

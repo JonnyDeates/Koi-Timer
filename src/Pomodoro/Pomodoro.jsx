@@ -2,7 +2,7 @@ import React from 'react';
 import Timer from "../Timer/Timer";
 import ArrayTimer from "../Timer/ArrayTimer";
 import './Pomodoro.css'
-import {Context} from "../Context/Context";
+import {Context} from "../Context/TimerContext";
 class Pomodoro extends React.Component {
     static contextType = Context;
     state = {

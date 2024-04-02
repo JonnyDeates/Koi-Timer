@@ -1,7 +1,7 @@
 import React from 'react';
 import Helmet from 'react-helmet';
-
-const TitleComponent = ({ title }) => {
+type TitleComponentProps = {title: string}
+const TitleComponent = ({ title }: TitleComponentProps) => {
     let defaultTitle = 'Koi Timer';
     return (
         <Helmet>

@@ -1,6 +1,6 @@
 import React from 'react';
 import './Modals.css'
-import {Context} from "../Context/Context";
+import {Context} from "../Context/TimerContext";
 import {round} from "../Utlis/TimerUtils";
 import cuid from "cuid";
 

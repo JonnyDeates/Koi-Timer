@@ -2,7 +2,7 @@ import React from 'react';
 import "./Timer.css";
 import {TitleComponent} from "../Title/Title";
 import {getTime} from "../Utlis/TimerUtils";
-import {Context} from "../Context/Context";
+import {Context} from "../Context/TimerContext";
 class Timer extends React.Component {
     static contextType = Context;
     state = {
