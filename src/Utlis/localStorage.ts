@@ -1,6 +1,7 @@
 export function getStorage(storage, defaults) {
-    if(localStorage.getItem(storage) !== null){
-        return JSON.parse(localStorage.getItem(storage));
+    const locallyStored = localStorage.getItem(storage)
+    if(locallyStored !== null){
+        return JSON.parse(locallyStored);
     } else {
        return defaults;
     }

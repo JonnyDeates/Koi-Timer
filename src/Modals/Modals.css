@@ -1,4 +1,4 @@
-.modalWrapper {
+.modal-wrapper {
     position: fixed;
     background: #00000099;
     width: 100vw;
@@ -14,9 +14,13 @@
     display: none;
 }
 
-.presets, .customtimes {
+.modal-card {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
     background-color: white;
-    overflow-y: scroll;
+    overflow-y: auto;
     margin-top: 1rem;
     border-radius: 25px;
     height: 85vh;
@@ -24,9 +28,23 @@
     max-width: 85vw;
     padding: 16px;
     z-index: 2;
-    animation: 2s popIn forwards;
+    /*animation: 2s popIn forwards;*/
 }
 
+.modal-card > button.close {
+    position: absolute;
+    cursor: pointer;
+    left: 0;
+    top: 0;
+    margin: 1rem;
+    border: unset;
+    border-radius: 100%;
+    width: 30px;
+    height: 30px;
+    color: dimgray;
+    font-weight: bolder;
+    background-color: unset;
+}
 .customtimes-form > label {
     display: block;
     margin: 20px 0;

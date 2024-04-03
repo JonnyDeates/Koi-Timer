@@ -1,12 +1,12 @@
 
-import React, {Component} from 'react';
-import './TodoList.css'
-import TodoItem from "./TodoItem/TodoItem";
-import cuid from 'cuid'
+import React from 'react';
 import {getStorage, setStorage} from "../Utlis/localStorage";
 import TrackVisibility from "../Utlis/TrackVisibility";
+import './TodoList.css'
 
-class TodoList extends Component {
+const TodoList = () => {
+
+
     constructor(props) {
         super(props);
         this.state = {

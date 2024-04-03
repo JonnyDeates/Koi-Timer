@@ -1,127 +1,71 @@
 // Make sure the shape of the default value passed to
 // createContext matches the shape that the consumers expect!
-import { Dispatch, ReactNode, createContext, useContext, useReducer, useState } from "react";
-import sound from '../Assets/Sounds/analog_alarm_clock.wav'
+import {createContext, Dispatch, ReactNode, useContext, useReducer, useState} from "react";
+import {
+    DEFAULT_LONG_BREAK,
+    DEFAULT_POMODORO,
+    DEFAULT_SHORT_BREAK,
+    instanceTimerReducer,
+    InstanceTimerReducerAction, InstanceTimerReducerState
+} from "./reducers/InstanceTimerReducer";
+import intervalPresetsReducer, {
+    DEFAULT_PRESETS,
+    IntervalPresetsReducerAction,
+    IntervalPresetsReducerState
+} from "./reducers/IntervalPresetsReducer";
+import {activeTimerReducer, ActiveTimerReducerAction, ActiveTimerReducerState} from "./reducers/ActiveTimerReducer";
 
-type TimerContextType = {
-    isLoopOn: boolean,
+
+export type TimerContextType = {
+    currentTimerSelected: ActiveTimerReducerState,
     showInfo: boolean,
-    audioToPlay: string,
-    volume: number,
-    presets: Preset[],
-    currentPresetId: string,
-    pomodoro: number,
-    shortBreak: number,
-    longBreak: number,
-    handleSound: (newSound: string) => void,
-    handleVolume: (newVolume: number) => void,
-    handleToggleLoop: ()=> void,
-    handleToggleShowInfo: ()=>void,
-    presetsDispatch: Dispatch<PresetsReducerAction>,
-    pomodoroDispatch: Dispatch<PomodoroReducerAction>
+    intervalPresets: IntervalPresetsReducerState,
+    instanceTimer: InstanceTimerReducerState,
+    handleToggleShowInfo: () => void,
+    currentTimerDispatch: Dispatch<ActiveTimerReducerAction>,
+    instanceTimerDispatch: Dispatch<InstanceTimerReducerAction>
+    intervalPresetsDispatch: Dispatch<IntervalPresetsReducerAction>,
 }
 
 export const TimerContext = createContext<TimerContextType>({} as TimerContextType);
 
-export type Preset = { title: string, description: string, timeInterval: number[], id: string }
-
-const DEFAULT_PRESETS: Preset[] = [{
-    title: 'The Standard',
-    description: 'The standard model of the pomodoro drone.',
-    timeInterval: [25, 5, 25, 5, 25, 5, 25, 15, 25, 5, 25, 5, 25, 5, 25, 15, 10],
-    id: 'theStandard'
-},
-{
-    title: 'The Koi Timer',
-    description: 'My idea of a good work ethic.',
-    timeInterval: [25, 5, 25, 5, 25, 5, 25, 20, 30, 5, 25, 5, 25, 5, 25, 20, 25],
-    id: 'theKoiTimer'
-},
-{
-    title: 'The Revised Standard',
-    description: 'A revised model of the pomodoro drone, shorter in case to fit some people\'s time constraints.',
-    timeInterval: [20, 5, 20, 5, 20, 5, 20, 15, 20, 5, 20, 5, 20, 5, 20, 15, 20],
-    id: 'theRevisedStandard'
-}];
-
-export const DEFAULT_PRESET_IDS = DEFAULT_PRESETS.map(preset => preset.id)
-
-const DEFAULT_POMODORO = 25;
-const DEFAULT_SHORT_BREAK = 5;
-const DEFAULT_LONG_BREAK = 15;
-
-
-type PomodoroReducerState = { pomodoro: number, shortBreak: number, longBreak: number }
-type PomodoroReducerAction = { type: keyof PomodoroReducerState, value: number }
-const pomodoroReducer = (state: PomodoroReducerState, action: PomodoroReducerAction) => {
-    return { ...state, [action.type]: action.value }
-}
-
-type PresetsReducerState = {presets: Preset[], currentPresetId: string}
-type PresetsReducerAction = {type: "addPreset", preset: Preset} | {type: "removePreset" | "changePreset", id: string}
-const presetsReducer = (state: PresetsReducerState, action: PresetsReducerAction) => {
-    switch(action.type){
-        case "addPreset":
-            return {
-                presets: [...state.presets, action.preset],
-                currentPresetId: action.preset.id
-            }
-        case "changePreset":
-            return {
-                ...state,
-                currentPresetId: action.id
-            }
-        case "removePreset": {
-            return {
-                presets: state.presets.filter(x => x.id !== action.id),
-                currentPresetId: 'theStandard'
-            }
-        }
-    }
-}
-
-const TimerContextProvider = ({ children }: { children: ReactNode }) => {
-    const [isLoopOn, setIsLoopOn] = useState<boolean>(true);
+const TimerContextProvider = ({children}: { children: ReactNode }) => {
     const [showInfo, setShowInfo] = useState<boolean>(true);
-    const [audioToPlay, setAudioToPlay] = useState<string>(sound);
-    const [volume, setVolume] = useState<number>(1)
-    const [{shortBreak, longBreak, pomodoro}, pomodoroDispatch] = useReducer(pomodoroReducer, { pomodoro: DEFAULT_POMODORO, shortBreak: DEFAULT_SHORT_BREAK, longBreak: DEFAULT_LONG_BREAK })
-    const [{presets, currentPresetId}, presetsDispatch] = useReducer(presetsReducer, { presets: DEFAULT_PRESETS, currentPresetId: 'theStandard' })
+    const [instanceTimer, instanceTimerDispatch] = useReducer(instanceTimerReducer, {
+        pomodoro: DEFAULT_POMODORO,
+        shortBreak: DEFAULT_SHORT_BREAK,
+        longBreak: DEFAULT_LONG_BREAK
+    });
+    const [intervalPresets, intervalPresetsDispatch] = useReducer(intervalPresetsReducer, {
+        presets: DEFAULT_PRESETS,
+        currentPresetId: 'theStandard',
+        intervalIndex: 0
+    });
+    const [currentTimerSelected, currentTimerDispatch] = useReducer(activeTimerReducer, {
+        isActive: false,
+        currentTimer: "pomodoro",
+        count: 25,
+    });
 
-    const handleToggleLoop = () => {
-        setIsLoopOn(!isLoopOn)
-    };
     const handleToggleShowInfo = () => {
         setShowInfo(!showInfo)
     };
-    const handleSound = (newAudio: string) => {
-        setAudioToPlay(newAudio);
-    };
-    const handleVolume = (newVolume: number) => {
-        setVolume(newVolume);
-    };
 
-    const value = {
-        isLoopOn,
+    const value: TimerContextType = {
+        currentTimerSelected,
         showInfo,
-        audioToPlay,
-        volume,
-        presets,
-        currentPresetId,
-        pomodoro,
-        shortBreak,
-        longBreak,
-        handleSound,
-        handleVolume,
-        handleToggleLoop,
+        intervalPresets,
+        instanceTimer,
         handleToggleShowInfo,
-        presetsDispatch,
-        pomodoroDispatch,
+        currentTimerDispatch,
+        instanceTimerDispatch,
+        intervalPresetsDispatch,
     };
 
     return <TimerContext.Provider value={value}>
         {children}
     </TimerContext.Provider>
-}
+};
 export default TimerContextProvider;
-export const useTimerContext = () => useContext(TimerContext)
+
+export const useTimerContext = () => useContext(TimerContext);
