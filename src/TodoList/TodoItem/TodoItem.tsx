@@ -1,28 +1,54 @@
-import React from 'react';
+import React, {ChangeEvent, KeyboardEvent, Dispatch} from 'react';
 import pencil from '../../Assets/icons/Pencil.png'
-class TodoItem extends React.Component {
-    handleKeyPress = (event) => {
-        if(event.key === 'Enter'){
-            this.props.submitEdit(this.props.id)
-        }
-    }
-    render() {
-        return (
-            <div className={'todolist-item ' + this.props.bgColor}>
-                <input type='checkbox' onChange={() => this.props.handleChecked(this.props.id)}
-                       checked={this.props.checked}/>
-                {(this.props.isEditing) ?
-                    <input className={'todolist-item-edit'} value={this.props.goal} onChange={(e) => this.props.handleEdit(e, this.props.id)}
-                           onKeyPress={this.handleKeyPress}
-                    /> :
-                    <p onDoubleClick={() => this.props.toggleEdit(this.props.id)}>{this.props.goal}</p>}
-                <button onClick={() => this.props.toggleEdit(this.props.id)}>{(this.props.isEditing) ? '+' : <img src={pencil} alt={'Edit'}/>}</button>
-                <button onClick={() => this.props.deleteGoal(this.props.id)}>X</button>
-            </div>
-        );
-    }
+import {Todo, TodoReducerAction} from "../reducer/todosReducer";
 
+
+type TodoItemProps = Todo & {
+  id: string,
+  todosDispatch: Dispatch<TodoReducerAction>,
+  bgColor: string
 }
+const TodoItem = ({id, checked, goal, isEditing, bgColor, todosDispatch}: TodoItemProps) => {
+
+  const handleKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      todosDispatch({type: 'toggleEdit', id});
+    }
+  };
+  const deleteGoal = () => {
+    todosDispatch({type: "deleteTodo", id});
+  };
+
+  const toggleEdit = () => {
+    todosDispatch({type: "toggleEdit", id})
+  };
+
+  const handleEdit = (event: ChangeEvent<HTMLInputElement>,) => {
+    todosDispatch({type: "editTodo", id, goal: event.target.value})
+  };
+  const handleChecked = () => {
+    todosDispatch({type: "toggleGoalCheck", id});
+  };
+  return (
+    <div className={'todolist-item ' + bgColor}>
+      <input type='checkbox' onChange={handleChecked}
+             checked={checked}/>{
+      isEditing
+        ? <input className={'todolist-item-edit'} value={goal}
+                 onChange={handleEdit}
+                 onKeyPress={handleKeyPress}/>
+        : <p onDoubleClick={toggleEdit}>{goal}</p>
+    }
+      <button onClick={toggleEdit}>{
+        isEditing
+          ? '+'
+          : <img src={pencil} alt={'Edit'}/>
+      }
+      </button>
+      <button onClick={deleteGoal}>X</button>
+    </div>
+  );
+};
 
 
 export default TodoItem;
