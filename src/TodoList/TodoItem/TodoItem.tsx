@@ -1,6 +1,7 @@
 import React, {ChangeEvent, KeyboardEvent, Dispatch} from 'react';
 import pencil from '../../Assets/icons/Pencil.png'
 import {Todo, TodoReducerAction} from "../reducer/todosReducer";
+import { CloseButton, IconButton } from 'koi-pool';
 
 
 type TodoItemProps = Todo & {
@@ -39,13 +40,12 @@ const TodoItem = ({id, checked, goal, isEditing, bgColor, todosDispatch}: TodoIt
                  onKeyPress={handleKeyPress}/>
         : <p onDoubleClick={toggleEdit}>{goal}</p>
     }
-      <button onClick={toggleEdit}>{
+      <IconButton onClick={toggleEdit} alt={'Edit'}  src={
         isEditing
           ? '+'
-          : <img src={pencil} alt={'Edit'}/>
-      }
-      </button>
-      <button onClick={deleteGoal}>X</button>
+          : pencil
+      }/>
+      <IconButton alt={'X'} src={''} onClick={deleteGoal}>x</IconButton>
     </div>
   );
 };

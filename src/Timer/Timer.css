@@ -61,11 +61,6 @@
     display: flex;
     justify-content: space-evenly;
 }
-.timer-buttons > button {
-    font-size: x-large;
-    margin: 16px;
-    padding: 16px;
-}
 
 @media (min-width: 480px) {
     .timer > h1 {
@@ -75,12 +70,6 @@
     .timer-elapsed {
         width: 70vw;
     }
-    .timer-buttons > button {
-        font-size: x-large;
-        margin: 16px;
-        border-radius: 25px;
-        padding: 16px;
-    }
 }
 @media (min-width: 767px) {
     .timer > h1 {
@@ -89,11 +78,5 @@
     }
     .timer-elapsed {
         width: 50vw;
-    }
-    .timer-buttons > button {
-        font-size: x-large;
-        margin: 16px;
-        border-radius: 25px;
-        padding: 16px;
     }
 }

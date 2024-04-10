@@ -4,9 +4,10 @@ import "./Timer.css";
 import {useSoundEffectContext} from "../Context/SoundEffectContext";
 import {InstanceTimerType} from "../Context/reducers/InstanceTimerReducer";
 import Timer from "./Timer";
+import { Button } from 'koi-pool';
 
 const InstanceTimer = () => {
-    const {audioToPlay, volume} = useSoundEffectContext();
+    const {volume} = useSoundEffectContext();
     const {
         currentTimerSelected: {count, isActive, currentTimer},
         currentTimerDispatch,
@@ -55,9 +56,9 @@ const InstanceTimer = () => {
     return (<Timer audioRef={ref} buttons={
             <>
                 {isActive
-                    ? <button onClick={handlePauseInterval}> Pause </button>
-                    : <button onClick={handleStartInterval}> Start </button>}
-                <button onClick={handleRestartTimer}> Restart</button>
+                    ? <Button onClick={handlePauseInterval}>Pause</Button>
+                    : <Button onClick={handleStartInterval}>Start</Button>}
+                <Button onClick={handleRestartTimer}>Restart</Button>
             </>
         }/>
     );

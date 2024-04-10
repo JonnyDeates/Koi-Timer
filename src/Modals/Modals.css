@@ -10,10 +10,6 @@
     display: inline-flex;
 }
 
-.active {
-    display: none;
-}
-
 .modal-card {
     position: absolute;
     top: 0;
@@ -85,7 +81,7 @@
     font-weight: 700;
 }
 
-.presets > button:hover, .customtimes > button:hover, .custom-preset button:hover, .presets > div > button:hover {
+.presets > button:hover, .customtimes > button:hover, .presets > div > button:hover {
     background-color: #6da5d877;
 }
 
@@ -229,7 +225,7 @@
     margin: 0 0 1em 0;
 }
 
-.sound-section button, .custom-preset button {
+.sound-section button{
     border-radius: 4px;
     border: 1px #00000022 solid;
     background-color: #11111122;

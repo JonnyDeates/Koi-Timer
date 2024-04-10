@@ -3,6 +3,7 @@ import TrackVisibility from "../Utlis/TrackVisibility";
 import './TodoList.css'
 import TodoItem from "./TodoItem/TodoItem";
 import todosReducer from "./reducer/todosReducer";
+import { Button } from 'koi-pool';
 
 const TodoList = () => {
   const [{todos, totalChecked}, todosDispatch] = useReducer(todosReducer, {todos: {}, totalChecked: 0});
@@ -35,7 +36,7 @@ const TodoList = () => {
             Goal:
             <input type="text" value={newGoal} onChange={handlNewGoal}/>
           </label>
-          <button onClick={handleSubmit}>+</button>
+          <Button onClick={handleSubmit}>+</Button>
         </form>
         <div style={{animation: isVisible ? '1s 2s fade-in forwards' : ''}}>
           {todoKeys.map((todoId, i) =>

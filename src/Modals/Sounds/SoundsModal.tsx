@@ -1,7 +1,5 @@
 import React, {ChangeEvent, useRef, useState} from 'react';
 import '../Modals.css'
-import GenericModal, {LimitedModalProps} from "../GenericModal/GenericModal";
-import {useTimerContext} from "../../Context/TimerContext";
 import alarm1 from '../../Assets/Sounds/Alarm.wav';
 import alarm2 from '../../Assets/Sounds/Alarm2.wav';
 import alarm3 from '../../Assets/Sounds/Alarm3.wav';
@@ -50,7 +48,7 @@ const allSounds: SoundEffect[] = [{
 }
 ];
 
-const SoundsModal = ({isOpen, handleClose}: LimitedModalProps) => {
+const SoundsModal = () => {
 
     const {handleVolume, audioToPlay, volume} = useSoundEffectContext();
     const [isPlaying, setIsPlaying] = useState<string>('');
@@ -77,9 +75,7 @@ const SoundsModal = ({isOpen, handleClose}: LimitedModalProps) => {
         let newVolume = parseFloat(e.target.value);
         handleVolume(newVolume);
     };
-    return (
-        <GenericModal handleClose={handleClose} isOpen={isOpen} title={"Alarm Settings"}>
-            <>
+    return (<>
                 <h2>Currently Set: {audioToPlay.title}</h2>
                 <h3>Author: <span
                     onClick={() => window.open(audioToPlay.link)}>{audioToPlay.author}</span>
@@ -102,7 +98,6 @@ const SoundsModal = ({isOpen, handleClose}: LimitedModalProps) => {
                     <SoundSection key={i} {...soundEffect}/>
                 )}
             </>
-        </GenericModal>
     );
 };
 

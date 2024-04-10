@@ -3,6 +3,7 @@ import "./Timer.css";
 import {useTimerContext} from "../Context/TimerContext";
 import {useSoundEffectContext} from "../Context/SoundEffectContext";
 import Timer from "./Timer";
+import {Button} from "koi-pool";
 
 const ArrayTimer = () => {
     const {
@@ -11,7 +12,7 @@ const ArrayTimer = () => {
       currentTimerDispatch,
       intervalPresetsDispatch
     } = useTimerContext();
-    const {volume, audioToPlay} = useSoundEffectContext();
+    const {volume} = useSoundEffectContext();
     const [intervalId, setIntervalId] = useState<number>();
     const ref = useRef<HTMLAudioElement>(null);
     const currentTimeInterval = presets[currentPresetId].timeInterval;
@@ -105,12 +106,12 @@ const ArrayTimer = () => {
                   }
                   buttons={
                     <>
-                      {isActive
-                        ? <button onClick={handlePauseInterval}> Pause </button>
-                        : <button onClick={handleStartInterval}> Start </button>}
-                      <button onClick={handleBackInterval}>Back</button>
-                      <button onClick={handleSkipInterval}>Skip</button>
-                      <button onClick={handleRestartTimer}> Restart</button>
+                      {isActive 
+                        ? <Button onClick={handlePauseInterval}> Pause </Button> 
+                        : <Button onClick={handleStartInterval}> Start </Button>}
+                      <Button onClick={handleBackInterval}>Back</Button>
+                      <Button onClick={handleSkipInterval}>Skip</Button>
+                      <Button onClick={handleRestartTimer}> Restart</Button>
                     </>
                   }/>
   }

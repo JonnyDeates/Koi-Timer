@@ -8,7 +8,7 @@ const Footer = () => {
         { link: 'https://www.linkedin.com/in/jonnydeates/', text: 'Linked-in' }
     ]
 
-    const currentDateYear = new Date().getFullYear
+    const currentDateYear = new Date().getFullYear()
 
     return (
         <div className={'footer-wrapper'} >

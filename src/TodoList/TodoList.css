@@ -23,11 +23,10 @@
 }
 .todolist > form > button {
     margin-left: 16px;
-    border: 1px solid #00000022;
-    background-color: #11111122;
     border-radius: 4px;
-    padding: 2px 8px;
+    padding:  10px 2px;
     font-size: x-large;
+    width: 50px;
     cursor: pointer;
     font-weight: 700;
 }
@@ -62,22 +61,9 @@
     font-size: large;
     animation: 2s popIn forwards;
 }
-.todolist-item > button{
-    margin: 16px 0;
-    background-color: #11111122;
-    border: 1px solid #00000022;
-    border-radius: 4px;
-    padding: 4px 12px;
-    font-size: large;
-    cursor: pointer;
-    font-weight: 700;
-}
-.todolist-item > button:hover{
-background-color: #6da5d877;
-}
 .todolist-item > button > img {
-    width: 20px;
-    padding: 4px 0;
+    width: 24px;
+    height: 24px
 }
 .todolist-item > p{
      max-width: 50vw;

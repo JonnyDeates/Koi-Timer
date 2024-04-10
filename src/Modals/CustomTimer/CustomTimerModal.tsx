@@ -1,30 +1,30 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import '../Modals.css'
-import {useTimerContext} from "../../Context/TimerContext.js";
-import {round} from "../../Utlis/TimerUtils.js";
-import GenericModal, {LimitedModalProps} from "../GenericModal/GenericModal.js";
+import { useTimerContext } from "../../Context/TimerContext.js";
+import { round } from '../../Utlis/TimerUtils';
+import { Button } from 'koi-pool';
 
-const CustomTimerModal = ({isOpen, handleClose}: LimitedModalProps) => {
+const CustomTimerModal = () => {
     const {
-        intervalPresets: {presets},
-        intervalPresetsDispatch,
         instanceTimerDispatch,
-        instanceTimer: {pomodoro, longBreak, shortBreak}
+        instanceTimer: { pomodoro, longBreak, shortBreak },
+        intervalPresetsDispatch,
+        intervalPresets: {presets}
     } = useTimerContext();
-    const [isInMinutes, setIsInMinutes] = useState<boolean>(true);
     const [customTimeInterval, setCustomTimeInterval] = useState<number[]>([25]);
+    const [isInMinutes, setIsInMinutes] = useState<boolean>(true);
 
     const handlePomodoro = (e: ChangeEvent<HTMLInputElement>) => {
         const float = parseFloat(e.target.value);
-        instanceTimerDispatch({type: "pomodoro", value: float});
+        instanceTimerDispatch({ type: "pomodoro", value: float });
     };
     const handleShortBreak = (e: ChangeEvent<HTMLInputElement>) => {
         const float = parseFloat(e.target.value);
-        instanceTimerDispatch({type: "shortBreak", value: float});
+        instanceTimerDispatch({ type: "shortBreak", value: float });
     };
     const handleLongBreak = (e: ChangeEvent<HTMLInputElement>) => {
         const float = parseFloat(e.target.value);
-        instanceTimerDispatch({type: "longBreak", value: float});
+        instanceTimerDispatch({ type: "longBreak", value: float });
     };
     const handleToggleTime = () => {
         setIsInMinutes(!isInMinutes)
@@ -48,6 +48,7 @@ const CustomTimerModal = ({isOpen, handleClose}: LimitedModalProps) => {
     //     }
     // }
 
+
     const handleAddTimeIntervalToCurrent = (interval: number) => {
         setCustomTimeInterval((prevState) => [...prevState, interval])
     };
@@ -69,60 +70,60 @@ const CustomTimerModal = ({isOpen, handleClose}: LimitedModalProps) => {
             alert('The time sequence is not large enough.')
         }
     };
+    
+    return (<>
 
-    return (
-        <GenericModal handleClose={handleClose} isOpen={isOpen} title={"Custom Timers"}>
-            <div className="customtimes-form">
-                <h2>Set Timers</h2>
-                <div className="radio">
-                    <label>
-                        <input type="radio" value="minutes" onChange={handleToggleTime} checked={isInMinutes}/>
-                        Minutes
-                    </label>
-                    <label>
-                        <input type="radio" value="seconds" onChange={handleToggleTime} checked={!isInMinutes}/>
-                        Seconds
-                    </label>
-                </div>
+        <div className="customtimes-form">
+            <h2>Set Timers</h2>
+            <div className="radio">
                 <label>
-                    Pomodoro:
-                    <input type="number" value={pomodoro} onChange={handlePomodoro}/>
+                    <input type="radio" value="minutes" onChange={handleToggleTime} checked={isInMinutes} />
+                    Minutes
                 </label>
                 <label>
-                    Short Break:
-                    <input type="number" value={shortBreak} onChange={handleShortBreak}/>
-                </label>
-                <label>
-                    Long Break:
-                    <input type="number" value={longBreak} onChange={handleLongBreak}/>
+                    <input type="radio" value="seconds" onChange={handleToggleTime} checked={!isInMinutes} />
+                    Seconds
                 </label>
             </div>
-            <div className={'custom-preset'}>
-                <h2> Custom Preset</h2>
-                <div>
-                    <button onClick={() => handleAddTimeIntervalToCurrent(pomodoro)}>
-                        Pomodoro
-                    </button>
-                    <button onClick={() => handleAddTimeIntervalToCurrent(shortBreak)}>
-                        Short Break
-                    </button>
-                    <button onClick={() => handleAddTimeIntervalToCurrent(longBreak)}>
-                        Long Break
-                    </button>
-                </div>
-                <div>
-                    <p>Length: <span>{round(customTimeInterval.reduce((a, b) => {
-                        return a + b;
-                    }, 0) / 60, 2)} hours</span></p>
-                    <p>Times: <span>{(customTimeInterval.length !== 0) ? customTimeInterval.map((num, i) => (i !== customTimeInterval.length - 1) ? (round(num, 2) + ', ') : round(num, 2)) : 'N/A'}</span>
-                    </p>
-                </div>
-                <div>
-                    <button onClick={handleClearCurrentTimeInterval}>Clear</button>
-                    <button onClick={handleAddPreset}>Submit</button>
-                </div>
+            <label>
+                Pomodoro:
+                <input type="number" value={pomodoro} onChange={handlePomodoro} />
+            </label>
+            <label>
+                Short Break:
+                <input type="number" value={shortBreak} onChange={handleShortBreak} />
+            </label>
+            <label>
+                Long Break:
+                <input type="number" value={longBreak} onChange={handleLongBreak} />
+            </label>
+        </div>
+        <div className={'custom-preset'}>
+            <h2>Create Custom Preset</h2>
+            <div>
+                <Button  onClick={() => handleAddTimeIntervalToCurrent(pomodoro)}>
+                    Pomodoro
+                </Button>
+                <Button onClick={() => handleAddTimeIntervalToCurrent(shortBreak)}>
+                    Short Break
+                </Button>
+                <Button onClick={() => handleAddTimeIntervalToCurrent(longBreak)}>
+                    Long Break
+                </Button>
             </div>
-        </GenericModal>
+            <div>
+                <p>Length: <span>{round(customTimeInterval.reduce((a, b) => {
+                    return a + b;
+                }, 0) / 60, 2)} hours</span></p>
+                <p>Times: <span>{(customTimeInterval.length !== 0) ? customTimeInterval.map((num, i) => (i !== customTimeInterval.length - 1) ? (round(num, 2) + ', ') : round(num, 2)) : 'N/A'}</span>
+                </p>
+            </div>
+            <div>
+                <Button variants='cancel' onClick={handleClearCurrentTimeInterval}>Clear</Button>
+                <Button onClick={handleAddPreset}>Submit</Button>
+            </div>
+        </div>
+    </>
     );
 };
 

@@ -4,6 +4,7 @@ import ArrayTimer from "../Timer/ArrayTimer";
 import './Pomodoro.css'
 import {useTimerContext} from "../Context/TimerContext";
 import {CurrentSelectedTimerType} from "../Context/reducers/ActiveTimerReducer";
+import { Button } from 'koi-pool';
 
 const Pomodoro = () => {
     const {
@@ -14,6 +15,7 @@ const Pomodoro = () => {
     } = useTimerContext();
 
     const handleSetCount = (currentSelectedKey: CurrentSelectedTimerType) => {
+
         let newTime: number;
         if (currentSelectedKey === 'interval') {
             newTime = presets[currentPresetId].timeInterval[intervalIndex] * 60; // Convert to minutes
@@ -36,10 +38,10 @@ const Pomodoro = () => {
     return (
         <div className="body">
             {controlButtons.map(({text, currentSelectedKey}, i) =>
-                <button key={currentSelectedKey + i} className={currentTimer === currentSelectedKey ? 'tinted' : ''}
+                <Button variants='standard' key={currentSelectedKey + i} isActive={currentTimer === currentSelectedKey}
                         onClick={() => handleSetCount(currentSelectedKey)}>
                     {text}
-                </button>
+                </Button>
             )}
             {isIntervalSelected
                 ? <ArrayTimer/>

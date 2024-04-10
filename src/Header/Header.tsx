@@ -1,35 +1,38 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import CustomTimerModal from "../Modals/CustomTimer/CustomTimerModal";
 import SoundsModal from "../Modals/Sounds/SoundsModal";
 import logo from '../Assets/logos/yinyangyexin.png'
 import PresetsModal from '../Modals/Presets/PresetsModal';
 import './Header.css'
-
+import settings from './settings-icon.png'
+import { Button, IconButton, GenericModalWithTabs } from 'koi-pool';
 const Header = () => {
     const [isRotating, setIsRotating] = useState<boolean>(false);
-    const [currentActiveModal, setCurrentActiveModal] = useState<undefined | "sounds" | "presets" | "customTimer">();
+    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
-    const handleCloseModal = () => setCurrentActiveModal(undefined);
+    const handleCloseModal = () => setIsModalOpen(false);
+    const handleOpenModal = () => setIsModalOpen(true);
 
     return (
         <div className="header">
-            <h1>
-                K
-                <img src={logo} alt={'o'} onAnimationEnd={() => setIsRotating(true)}
-                      style={{animation: (isRotating) ? '2s linear logo-spin infinite' : '2s slide-in-down forwards'}}/>
-                {('i Timer'.split('').map((letter, i) =>
-                    <span key={i} style={{animation: '1s ' + (0.25 + (i / 8)) + "s slide-in-down forwards"}}>
-                        {letter}
-                    </span>))}
-            </h1>
-            <div className="nav">
-                <button onClick={() => setCurrentActiveModal("customTimer")}>Custom Timer</button>
-                <button onClick={() => setCurrentActiveModal("presets")}>Presets</button>
-                <button onClick={() => setCurrentActiveModal("sounds")}>Alarm</button>
-            </div>
-            <PresetsModal handleClose={handleCloseModal} isOpen={"presets" === currentActiveModal}/>
-            <CustomTimerModal handleClose={handleCloseModal} isOpen={"customTimer" === currentActiveModal}/>
-            <SoundsModal handleClose={handleCloseModal} isOpen={"sounds" === currentActiveModal}/>
+            <nav>
+                <h1>
+                    K
+                    <img src={logo} alt={'o'} onAnimationEnd={() => setIsRotating(true)}
+                        style={{ animation: (isRotating) ? '2s linear logo-spin infinite' : '2s slide-in-down forwards' }} />
+                    {('i Timer'.split('').map((letter, i) =>
+                        <span key={i} style={{ animation: '1s ' + (0.25 + (i / 8)) + "s slide-in-down forwards" }}>
+                            {letter}
+                        </span>))}
+                </h1>
+                <IconButton src={settings} variants='standard' onClick={handleOpenModal}/>
+            </nav>
+            <GenericModalWithTabs tabs={[
+                { title: "Custom Timer", body: <CustomTimerModal /> },
+                { title: "Presets", body: <PresetsModal />, actionButtons: [<Button>Howdy</Button>] },
+                { title: "Sounds", body: <SoundsModal /> }
+            ]} handleClose={handleCloseModal} isOpen={isModalOpen} />
+
         </div>
     );
 };
