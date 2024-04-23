@@ -1,0 +1,63 @@
+.timer-elapsed {
+    color: gray;
+    width: 90%;
+    position: relative;
+    justify-content: flex-end;
+    /*margin: 0 16px -2em 16px;*/
+    display: flex;
+    background-color: #e6eef5;
+    margin: 1em auto;
+    height: 1em;
+    border-radius: 10px;
+    box-shadow: 3px 4px 5px 2px hsla(0,0%,100%,.1), 1px 2px 2px 1px hsla(0,0%,78.4%,.3);
+    overflow: hidden;
+    /* opacity: 0;
+    animation: 1s 1s slide-in-down forwards; */
+}
+.timer-elapsed > div {
+    border-right: 1px solid #00000022;
+    border-left: 1px solid #00000022;
+    cursor: pointer;
+      overflow: hidden;
+    /* opacity: 0;
+    animation: 1s 2s fade-in forwards; */
+}
+.timer-elapsed > div:first-child {
+    border-left: unset;
+}
+.timer-elapsed > div:last-child {
+    border-right: unset;
+}
+.timer-elapsed > div:hover {
+    background-color: #6da5d877;
+}
+.timer-elapsed > .grey {
+    background-color: #72b2e6dd;
+}
+.timer-elapsed > .grey:first-child {
+    border-radius: 10px 0 0 10px;
+}
+.timer-elapsed > .active {
+    background-color: #6da5d8;
+    display: unset;
+}
+.timer-elapsed > .active:hover {
+    background-color: #6da5d8;
+    cursor: unset;
+}
+.timer-elapsed > .active:first-child {
+    border-radius: 10px 0 0 10px;
+}
+.timer-elapsed > .active:last-child {
+    border-radius: 0 10px 10px 0;
+}
+@media (min-width: 480px) {
+    .timer-elapsed {
+        width: 70%;
+    }
+}
+@media (min-width: 767px) {
+    .timer-elapsed {
+        width: 50%;
+    }
+}

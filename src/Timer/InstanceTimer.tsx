@@ -49,7 +49,7 @@ const InstanceTimer = () => {
             ref.current.pause();
         }
         let instanceKey = currentTimer as InstanceTimerType;
-        let newTime = instanceTimer[instanceKey] * 60;
+        let newTime = instanceTimer[instanceKey];
         currentTimerDispatch({type: "setCount", newTime, isActive: false});
     };
 

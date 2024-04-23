@@ -1,6 +1,6 @@
 // Make sure the shape of the default value passed to
 // createContext matches the shape that the consumers expect!
-import {createContext, Dispatch, ReactNode, useContext, useReducer, useState} from "react";
+import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useEffect, useReducer, useState } from "react";
 import {
     DEFAULT_LONG_BREAK,
     DEFAULT_POMODORO,
@@ -13,8 +13,9 @@ import intervalPresetsReducer, {
     IntervalPresetsReducerAction,
     IntervalPresetsReducerState
 } from "./reducers/IntervalPresetsReducer";
-import {activeTimerReducer, ActiveTimerReducerAction, ActiveTimerReducerState} from "./reducers/ActiveTimerReducer";
+import { activeTimerReducer, ActiveTimerReducerAction, ActiveTimerReducerState } from "./reducers/ActiveTimerReducer";
 
+export type UnitOfTimeType = 'second' | 'minute' | 'hour'
 
 export type TimerContextType = {
     currentTimerSelected: ActiveTimerReducerState,
@@ -25,12 +26,17 @@ export type TimerContextType = {
     currentTimerDispatch: Dispatch<ActiveTimerReducerAction>,
     instanceTimerDispatch: Dispatch<InstanceTimerReducerAction>
     intervalPresetsDispatch: Dispatch<IntervalPresetsReducerAction>,
+    unitOfTime: UnitOfTimeType,
+    setUnitOfTime: Dispatch<SetStateAction<UnitOfTimeType>>,
 }
+
 
 export const TimerContext = createContext<TimerContextType>({} as TimerContextType);
 
-const TimerContextProvider = ({children}: { children: ReactNode }) => {
+const TimerContextProvider = ({ children }: { children: ReactNode }) => {
     const [showInfo, setShowInfo] = useState<boolean>(true);
+    const [unitOfTime, setUnitOfTime] = useState<UnitOfTimeType>('minute');
+
     const [instanceTimer, instanceTimerDispatch] = useReducer(instanceTimerReducer, {
         pomodoro: DEFAULT_POMODORO,
         shortBreak: DEFAULT_SHORT_BREAK,
@@ -44,12 +50,13 @@ const TimerContextProvider = ({children}: { children: ReactNode }) => {
     const [currentTimerSelected, currentTimerDispatch] = useReducer(activeTimerReducer, {
         isActive: false,
         currentTimer: "pomodoro",
-        count: 25,
+        count: 25 * 60,
     });
 
     const handleToggleShowInfo = () => {
         setShowInfo(!showInfo)
     };
+
 
     const value: TimerContextType = {
         currentTimerSelected,
@@ -60,6 +67,8 @@ const TimerContextProvider = ({children}: { children: ReactNode }) => {
         currentTimerDispatch,
         instanceTimerDispatch,
         intervalPresetsDispatch,
+        unitOfTime,
+        setUnitOfTime
     };
 
     return <TimerContext.Provider value={value}>

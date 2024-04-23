@@ -1,4 +1,4 @@
-import {createId} from "@paralleldrive/cuid2"
+import { createId } from "@paralleldrive/cuid2"
 
 export type Preset = { title: string, description: string, timeInterval: number[] }
 
@@ -6,17 +6,17 @@ export const DEFAULT_PRESETS: Record<string, Preset> = {
     "theStandard": {
         title: 'The Standard',
         description: 'The standard model of the pomodoro drone.',
-        timeInterval: [25, 5, 25, 5, 25, 5, 25, 15, 25, 5, 25, 5, 25, 5, 25, 15, 10],
+        timeInterval: [25 * 60, 5 * 60, 25 * 60, 5 * 60, 25 * 60, 5 * 60, 25 * 60, 15 * 60, 25 * 60, 5 * 60, 25 * 60, 5 * 60, 25 * 60, 5 * 60, 25 * 60, 15 * 60, 10 * 60],
     },
     "theKoiTimer": {
         title: 'The Koi Timer',
         description: 'My idea of a good work ethic.',
-        timeInterval: [25, 5, 25, 5, 25, 5, 25, 20, 30, 5, 25, 5, 25, 5, 25, 20, 25],
+        timeInterval: [25 * 60, 5 * 60, 25 * 60, 5 * 60, 25 * 60, 5 * 60, 25 * 60, 20 * 60, 30 * 60, 5 * 60, 25 * 60, 5 * 60, 25 * 60, 5 * 60, 25 * 60, 20 * 60, 25 * 60],
     },
     "theRevisedStandard": {
         title: 'The Revised Standard',
         description: 'A revised model of the pomodoro drone, shorter in case to fit some people\'s time constraints.',
-        timeInterval: [20, 5, 20, 5, 20, 5, 20, 15, 20, 5, 20, 5, 20, 5, 20, 15, 20],
+        timeInterval: [20 * 60, 5 * 60, 20 * 60, 5 * 60, 20 * 60, 5 * 60, 20 * 60, 15 * 60, 20 * 60, 5 * 60, 20 * 60, 5 * 60, 20 * 60, 5 * 60, 20 * 60, 15 * 60, 20 * 60],
     }
 };
 
@@ -35,7 +35,7 @@ const intervalPresetsReducer = (state: IntervalPresetsReducerState, action: Inte
             const id = createId();
             return {
                 intervalIndex: 0,
-                presets: {...state.presets, [id]: action.preset},
+                presets: { ...state.presets, [id]: action.preset },
                 currentPresetId: id
             };
         }

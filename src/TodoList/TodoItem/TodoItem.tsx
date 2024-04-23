@@ -1,7 +1,7 @@
 import React, {ChangeEvent, KeyboardEvent, Dispatch} from 'react';
 import pencil from '../../Assets/icons/Pencil.png'
 import {Todo, TodoReducerAction} from "../reducer/todosReducer";
-import { CloseButton, IconButton } from 'koi-pool';
+import { IconButton } from 'koi-pool';
 
 
 type TodoItemProps = Todo & {

@@ -18,9 +18,9 @@ const Pomodoro = () => {
 
         let newTime: number;
         if (currentSelectedKey === 'interval') {
-            newTime = presets[currentPresetId].timeInterval[intervalIndex] * 60; // Convert to minutes
+            newTime = presets[currentPresetId].timeInterval[intervalIndex]; // Convert to minutes
         } else {
-            newTime = instanceTimer[currentSelectedKey] * 60; // Convert to minutes
+            newTime = instanceTimer[currentSelectedKey]; // Convert to minutes
         }
         currentTimerDispatch({type: 'setActiveTimer', newTime, currentTimer: currentSelectedKey});
 
