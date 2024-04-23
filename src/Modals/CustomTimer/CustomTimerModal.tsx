@@ -22,6 +22,8 @@ const CustomTimerModal = () => {
         setUnitOfTime
     } = useTimerContext();
     const [customTimeInterval, setCustomTimeInterval] = useState<number[]>([25 * 60]);
+    const [title, setTitle] = useState<string>(`Custom Preset ${Object.keys(presets).length - 2}`);
+    const [description, setDescription] = useState<string>("");
 
     const convertFromSecondsToOtherUnits = (currentTime: number) => {
         switch (unitOfTime) {
@@ -80,8 +82,8 @@ const CustomTimerModal = () => {
         if (customTimeInterval.length >= 2) {
             intervalPresetsDispatch({
                 type: "addPreset", preset: {
-                    title: `Custom Preset ${Object.keys(presets).length - 2}`,
-                    description: 'This is a client added preset.',
+                    title,
+                    description,
                     timeInterval: customTimeInterval,
                 },
             })
@@ -135,6 +137,16 @@ const CustomTimerModal = () => {
         </div>
         <div className={'custom-preset'}>
             <h2>Create Custom Preset</h2>
+            <div>
+                <label>Title: 
+                    <input value={title}/>
+                </label>
+            </div>            
+            <div>
+                <label>Description: 
+                    <input value={description}/>
+                </label>
+            </div>
             <div>
                 <Button onClick={() => handleAddTimeIntervalToCurrent(pomodoro)}>
                     Pomodoro

@@ -29,7 +29,7 @@ const Header = () => {
             </nav>
             <GenericModalWithTabs tabs={[
                 { title: "Custom Timer", body: <CustomTimerModal /> },
-                { title: "Presets", body: <PresetsModal />, actionButtons: [<Button>Howdy</Button>] },
+                { title: "Presets", body: <PresetsModal /> },
                 { title: "Sounds", body: <SoundsModal /> }
             ]} handleClose={handleCloseModal} isOpen={isModalOpen} />
 

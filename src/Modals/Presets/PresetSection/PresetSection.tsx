@@ -2,6 +2,7 @@ import React from 'react';
 import { round } from "../../../Utlis/TimerUtils";
 import { useTimerContext } from '../../../Context/TimerContext';
 import {DEFAULT_PRESET_IDS, Preset} from "../../../Context/reducers/IntervalPresetsReducer";
+import { CloseButton } from 'koi-pool';
 
 
 
@@ -24,7 +25,7 @@ const PresetSection = ({ timeInterval, title, description, id }: PresetSectionTy
 
     return (
         <div className={(isActive) ? 'tinted' : ''} onClick={handleSetTimer}>
-            {!isDefaultPreset ? <button onClick={handleDeletePreset}>X</button> : ''}
+            {!isDefaultPreset ? <CloseButton onClick={handleDeletePreset}>X</CloseButton> : ''}
             <h2>{title}</h2>
             <p>{description}</p>
             <p>Time Length: {round(sumArrayInHours(timeInterval), 2)} hours</p>
