@@ -1,0 +1,11 @@
+.SpacedLabeledInput {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    padding: 1rem;
+    width: 100%;
+}
+.SpacedLabeledInput > label {
+    margin: auto 0;
+
+}

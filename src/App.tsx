@@ -20,7 +20,7 @@ const App = () => {
               onClick={handleToggleShowInfo}>
         <img src={arrow} alt={'>'}/>
       </button>
-      <TodoList />
+      <TodoList/>
       <Footer/>
     </div>
   );

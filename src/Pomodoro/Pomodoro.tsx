@@ -33,12 +33,12 @@ const Pomodoro = () => {
         {text: "Loop", currentSelectedKey: 'interval'},
     ];
 
-    const isIntervalSelected = currentTimer === 'interval'
+    const isIntervalSelected = currentTimer === 'interval';
 
     return (
         <div className="body">
             {controlButtons.map(({text, currentSelectedKey}, i) =>
-                <Button variants='standard' key={currentSelectedKey + i} isActive={currentTimer === currentSelectedKey}
+                <Button variant='accept' key={currentSelectedKey + i} isActive={currentTimer === currentSelectedKey}
                         onClick={() => handleSetCount(currentSelectedKey)}>
                     {text}
                 </Button>

@@ -5,12 +5,13 @@ type TimeBarProps = {
     handleClick: (index: number) => void,
     showIntervalTime?: boolean,
     height?: string
+    width?: string
 }
-const TimeBar = ({ timeInterval, intervalIndex, handleClick, showIntervalTime=false, height='1em' }: TimeBarProps) => {
+const TimeBar = ({ timeInterval, intervalIndex, handleClick, showIntervalTime=false, height='1em', width }: TimeBarProps) => {
 
     const sumOfInterval = timeInterval.reduce((a, b) => a + b, 0);
 
-    return <div className={'timer-elapsed'} style={{height}}>
+    return <div className={'timer-elapsed'} style={{height, width}}>
         {timeInterval.map((x, i) =>
             <div key={i}
                 className={((i) < intervalIndex) ? 'grey' : (i === intervalIndex) ? 'active' : ''}
