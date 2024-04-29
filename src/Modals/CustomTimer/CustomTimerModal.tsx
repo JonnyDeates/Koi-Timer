@@ -1,14 +1,10 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent} from 'react';
 import '../Modals.css'
 import {useTimerContext} from "../../Context/TimerContext.js";
-import {round} from '../../Utlis/TimerUtils';
-import {Button, LabeledIconButton} from 'koi-pool';
-import TimeBar from '../../components/TimeBar/TimeBar';
+import {FloatingLabelInput, LabeledIconButton} from 'koi-pool';
 import hoursHourGlass from "./assets/timer-icon-hours.png"
 import minutesHourGlass from "./assets/timer-icon-minutes.png"
 import secondsHourGlass from "./assets/timer-icon-seconds.png"
-import {FloatingLabelInput} from "./FloatingLabelInput/FloatingLabelInput";
-import {SpacedLabeledInput} from "./SpacedLabeledInput/SpacedLabeledInput";
 import {convertFromSecondsToOtherUnits, convertFromUnitOfTimeToSeconds} from "../../Utlis/Converters";
 
 const CustomTimerModal = () => {

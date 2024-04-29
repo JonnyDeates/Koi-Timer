@@ -70,7 +70,7 @@ const ArrayTimer = () => {
     if (ref.current) {
       ref.current.pause();
     }
-    let newTime = currentTimeInterval[intervalIndex] * 60;
+    let newTime = currentTimeInterval[intervalIndex];
     currentTimerDispatch({ type: "setCount", newTime, isActive: false });
   };
 

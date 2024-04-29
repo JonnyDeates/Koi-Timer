@@ -27,20 +27,6 @@
     /*animation: 2s popIn forwards;*/
 }
 
-.modal-card > button.close {
-    position: absolute;
-    cursor: pointer;
-    left: 0;
-    top: 0;
-    margin: 1rem;
-    border: unset;
-    border-radius: 100%;
-    width: 30px;
-    height: 30px;
-    color: dimgray;
-    font-weight: bolder;
-    background-color: unset;
-}
 .customtimes-form > label {
 
 }
@@ -62,21 +48,6 @@
     max-height: 85%;
 }
 
-.presets > button, .customtimes > button {
-    position: absolute;
-    right: 16px;
-    border-radius: 8px;
-    border: 1px #00000022 solid;
-    background-color: #11111122;
-    cursor: pointer;
-    font-size: large;
-    padding: 4px 8px;
-    font-weight: 700;
-}
-
-.presets > button:hover, .customtimes > button:hover, .presets > div > button:hover {
-    background-color: #6da5d877;
-}
 
 .presets > div:hover {
     background-color: lightgray;
@@ -89,18 +60,6 @@
     border-radius: 25px;
     margin: 8px 0;
 }
-.presets > div > button {
-    position: absolute;
-    right: 32px;
-    border-radius: 8px;
-    border: 1px #00000022 solid;
-    background-color: #11111122;
-    cursor: pointer;
-    font-size: medium;
-    padding: 4px 8px;
-    font-weight: 700;
-}
-
 .presets > .tinted {
     background-color: lightgray;
 }
@@ -121,16 +80,6 @@
 }
 .divider {
     height: 1rem;
-}
-.radio > label {
-    font-size: larger;
-    cursor: pointer;
-}
-
-.radio > label > input {
-    cursor: pointer;
-    width: 16px;
-    height: 16px;
 }
 
 .sounds > h2, .customtimes h2 {
@@ -193,26 +142,6 @@
     cursor: pointer;
 }
 
-.sounds-button:hover {
-    background-color: unset !important;
-    cursor: unset !important;
-}
-
-.sounds-button button {
-    border-radius: 5px;
-    border: 1px #00000022 solid;
-    background-color: #11111122;
-    cursor: pointer;
-    font-size: large;
-    padding: 4px 8px;
-    font-weight: 500;
-    color: #00000077;
-}
-
-.sounds-button button:hover, .sound-section button:hover {
-    background-color: #6da5d877;
-}
-
 .sound-section {
     width: 60vw;
     display: inline-block;
@@ -228,18 +157,6 @@
     color: #6da5d8;
     cursor: pointer;
     margin: 0 0 1em 0;
-}
-
-.sound-section button{
-    border-radius: 4px;
-    border: 1px #00000022 solid;
-    background-color: #11111122;
-    cursor: pointer;
-    font-size: 0.9rem;
-    padding: 2px 4px;
-    font-weight: 500;
-    margin: 0 4px;
-    color: #00000077;
 }
 
 @media (min-width: 480px) {

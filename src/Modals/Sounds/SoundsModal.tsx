@@ -1,52 +1,11 @@
 import React, {ChangeEvent, useRef, useState} from 'react';
 import '../Modals.css'
-import alarm1 from '../../Assets/Sounds/Alarm.wav';
-import alarm2 from '../../Assets/Sounds/Alarm2.wav';
-import alarm3 from '../../Assets/Sounds/Alarm3.wav';
-import alarm4 from '../../Assets/Sounds/Alarm4.wav';
-import alarm5 from '../../Assets/Sounds/analog_alarm_clock.wav';
-import bell from '../../Assets/Sounds/Bell.wav';
-import fireAlarm from '../../Assets/Sounds/FireAlarm.wav';
 import SoundSection from "./SoundSection/SoundSection";
-import {SoundEffect, useSoundEffectContext} from "../../Context/SoundEffectContext";
+import {useSoundEffectContext} from "../../Context/SoundEffectContext";
+import {Button} from "koi-pool";
+import {DEFAULT_SOUND_LIST} from "./factory/SoundsFactory";
 
-const allSounds: SoundEffect[] = [{
-    title: 'Analog Alarm Clock',
-    author: 'bone666138',
-    sound: alarm5,
-    link: 'https://freesound.org/people/bone666138/sounds/198841/'
-}, {
-    title: 'Alarm Clock',
-    author: 'ZyryTSounds',
-    sound: alarm4,
-    link: 'https://freesound.org/people/ZyryTSounds/sounds/219244/'
-}, {
-    title: 'Bell',
-    author: 'DDmyzik',
-    sound: bell,
-    link: 'https://freesound.org/people/DDmyzik/sounds/460262/'
-}, {
-    title: 'Alarm Buzz',
-    author: 'coltonmanz',
-    sound: alarm1,
-    link: 'https://freesound.org/people/coltonmanz/sounds/381382/'
-}, {
-    title: 'Alarm Beep',
-    author: 'kwahmah_02',
-    sound: alarm2,
-    link: 'https://freesound.org/people/kwahmah_02/sounds/250629/'
-}, {
-    title: 'Smoke Detector',
-    author: 'SpliceSound',
-    sound: fireAlarm,
-    link: 'https://freesound.org/people/SpliceSound/sounds/369848/'
-}, {
-    title: 'Alarm Scifi',
-    author: 'JomelleJager',
-    sound: alarm3,
-    link: 'https://freesound.org/people/JomelleJager/sounds/248211/'
-}
-];
+
 
 const SoundsModal = () => {
 
@@ -90,13 +49,16 @@ const SoundsModal = () => {
                     </audio>
                     {
                         isOn
-                            ? <button onClick={handleStopAudio}>Stop</button>
-                            : <button onClick={handlePlayAudio}>Play</button>
+                            ? <Button onClick={handleStopAudio}>Stop</Button>
+                            : <Button onClick={handlePlayAudio}>Play</Button>
                     }
                 </div>
-                {allSounds.map((soundEffect, i) =>
+                <div className={'SoundList'}>
+                  {DEFAULT_SOUND_LIST.map((soundEffect, i) =>
                     <SoundSection key={i} {...soundEffect}/>
-                )}
+                  )}
+                </div>
+
             </>
     );
 };

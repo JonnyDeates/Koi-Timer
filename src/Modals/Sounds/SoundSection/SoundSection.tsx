@@ -1,5 +1,8 @@
 import React, {useRef, useState} from 'react';
-import {SoundEffect, useSoundEffectContext} from "../../../Context/SoundEffectContext";
+import {useSoundEffectContext} from "../../../Context/SoundEffectContext";
+import {Button} from "koi-pool";
+import {SoundEffect} from "../model/SoundEffect";
+import './SoundSection.css'
 
 const SoundSection = (soundEffect: SoundEffect) => {
     const {title, link, author, sound} = soundEffect;
@@ -31,7 +34,7 @@ const SoundSection = (soundEffect: SoundEffect) => {
     };
 
     return (
-        <div className={isActive ? 'tinted sound-section' : 'sound-section'}>
+        <div className={`SoundSection ${isActive ? 'active' : ''}`} onClick={handleSetSound}>
             <audio ref={ref}>
                 <source src={sound}/>
             </audio>
@@ -41,11 +44,8 @@ const SoundSection = (soundEffect: SoundEffect) => {
             </div>
             <div>
                 {isOn
-                    ? <button onClick={handleStopSoundEffect}>Stop</button>
-                    : <button onClick={handlePlaySoundEffect}>Play</button>}
-                <button onClick={handleSetSound}>
-                    Set
-                </button>
+                    ? <Button onClick={handleStopSoundEffect} style={{width: "50px"}}>Stop</Button>
+                    : <Button onClick={handlePlaySoundEffect}>Play</Button>}
             </div>
         </div>
     );
