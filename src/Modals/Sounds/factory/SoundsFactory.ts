@@ -1,12 +1,12 @@
 import {SoundEffect} from "../model/SoundEffect";
-import alarm5 from "../assets/198841__bone666138__alarm_clock.wav";
-import alarm4 from "../assets/219244__zyrytsounds__alarm_clock.wav";
-import bell from "../assets/460262__ddmyzik__bell.wav";
-import alarm1 from "../assets/381382__coltonmanz__alarm_buzz.wav";
-import alarm2 from "../assets/250629__kwahmah_02__alarm_beep.wav";
-import fireAlarm from "../assets/369848__splicesound__smoke_detector.wav";
-import alarm3 from "../assets/248211__jomellejager__alarm_scifi.wav";
-import alarm6 from "../assets/84423__g_lowing__alarm_clock.wav";
+import alarm5 from "../assets/sounds/198841__bone666138__alarm_clock.wav";
+import alarm4 from "../assets/sounds/219244__zyrytsounds__alarm_clock.wav";
+import bell from "../assets/sounds/460262__ddmyzik__bell.wav";
+import alarm1 from "../assets/sounds/381382__coltonmanz__alarm_buzz.wav";
+import alarm2 from "../assets/sounds/250629__kwahmah_02__alarm_beep.wav";
+import fireAlarm from "../assets/sounds/369848__splicesound__smoke_detector.wav";
+import alarm3 from "../assets/sounds/248211__jomellejager__alarm_scifi.wav";
+import alarm6 from "../assets/sounds/84423__g_lowing__alarm_clock.wav";
 
 
 export const DEFAULT_SOUND_LIST: SoundEffect[] = [{

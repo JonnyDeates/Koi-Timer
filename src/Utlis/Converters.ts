@@ -3,11 +3,11 @@ import {UnitOfTimeType} from "../Context/TimerContext";
 
 export const convertFromSecondsToOtherUnits = (unitOfTime: UnitOfTimeType, currentTime: number) => {
   switch (unitOfTime) {
-    case 'second':
+    case "second":
       return currentTime;
-    case 'minute':
+    case "minute":
       return currentTime / 60;
-    case 'hour':
+    case "hour":
       return round(currentTime / 60 / 60, 2)
   }
 };
@@ -15,11 +15,11 @@ export const convertFromSecondsToOtherUnits = (unitOfTime: UnitOfTimeType, curre
 
 export const convertFromUnitOfTimeToSeconds = (unitOfTime: UnitOfTimeType, currentTime: number) => {
   switch (unitOfTime) {
-    case 'second':
+    case "second":
       return currentTime;
-    case 'minute':
+    case "minute":
       return currentTime * 60;
-    case 'hour':
+    case "hour":
       return currentTime * 60 * 60
   }
 };

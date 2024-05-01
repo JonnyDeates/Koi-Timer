@@ -1,19 +1,19 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import "./Timer.css";
-import { useTimerContext } from "../Context/TimerContext";
-import { useSoundEffectContext } from "../Context/SoundEffectContext";
+import {useTimerContext} from "../Context/TimerContext";
+import {useSoundEffectContext} from "../Context/SoundEffectContext";
 import Timer from "./Timer";
-import { Button } from "koi-pool";
+import {Button} from "koi-pool";
 import TimeBar from '../components/TimeBar/TimeBar';
 
 const ArrayTimer = () => {
   const {
-    intervalPresets: { presets, currentPresetId, intervalIndex },
-    currentTimerSelected: { isActive, count },
+    intervalPresets: {presets, currentPresetId, intervalIndex},
+    currentTimerSelected: {isActive, count},
     currentTimerDispatch,
     intervalPresetsDispatch
   } = useTimerContext();
-  const { volume } = useSoundEffectContext();
+  const {volume} = useSoundEffectContext();
   const [intervalId, setIntervalId] = useState<number>();
   const ref = useRef<HTMLAudioElement>(null);
   const currentTimeInterval = presets[currentPresetId].timeInterval;
@@ -26,7 +26,7 @@ const ArrayTimer = () => {
 
   useEffect(() => {
     let newTime = currentTimeInterval[intervalIndex];
-    currentTimerDispatch({ type: "setCount", newTime });
+    currentTimerDispatch({type: "setCount", newTime});
   }, [intervalIndex, currentPresetId]);
 
   const handlePauseInterval = () => {
@@ -34,35 +34,41 @@ const ArrayTimer = () => {
     if (ref.current) {
       ref.current.pause();
     }
-    currentTimerDispatch({ type: "setIsActive", isActive: false });
+    currentTimerDispatch({type: "setIsActive", isActive: false});
   };
 
 
   const handleStartInterval = () => {
-    const currentIntervalId = setInterval(() => {
-      currentTimerDispatch({ type: "decreaseCount" });
+    if (isActive) {
+      handlePauseInterval()
+    } else {
 
-      if (currentTimeInterval.length !== intervalIndex && count <= 0) {
-        if (ref.current) {
-          ref.current.volume = volume;
-          ref.current.pause();
-          ref.current.load();
-          ref.current.play();
-        }
-        intervalPresetsDispatch({ type: "incrementIntervalIndex" });
-      } else if (count <= 0) {
-        if (ref.current) {
-          ref.current.volume = volume;
-          ref.current.pause();
-          ref.current.load();
-          ref.current.play();
-        }
-        // intervalPresetsDispatch({type:"incrementIntervalIndex"});
-        clearInterval(intervalId);
-      }
-    }, 1000);
 
-    setIntervalId(currentIntervalId)
+      const currentIntervalId = setInterval(() => {
+        currentTimerDispatch({type: "decreaseCount"});
+
+        if (currentTimeInterval.length !== intervalIndex && count <= 0) {
+          if (ref.current) {
+            ref.current.volume = volume;
+            ref.current.pause();
+            ref.current.load();
+            ref.current.play();
+          }
+          intervalPresetsDispatch({type: "incrementIntervalIndex"});
+        } else if (count <= 0) {
+          if (ref.current) {
+            ref.current.volume = volume;
+            ref.current.pause();
+            ref.current.load();
+            ref.current.play();
+          }
+          // intervalPresetsDispatch({type:"incrementIntervalIndex"});
+          clearInterval(intervalId);
+        }
+      }, 1000);
+
+      setIntervalId(currentIntervalId)
+    }
   };
 
   const handleRestartTimer = () => {
@@ -71,38 +77,38 @@ const ArrayTimer = () => {
       ref.current.pause();
     }
     let newTime = currentTimeInterval[intervalIndex];
-    currentTimerDispatch({ type: "setCount", newTime, isActive: false });
+    currentTimerDispatch({type: "setCount", newTime, isActive: false});
   };
 
   const handleSkipInterval = () => {
     clearInterval(intervalId); // Maybe?
-    intervalPresetsDispatch({ type: "incrementIntervalIndex" });
+    intervalPresetsDispatch({type: "incrementIntervalIndex"});
   };
 
   const handleBackInterval = () => {
     clearInterval(intervalId); // Maybe?
-    intervalPresetsDispatch({ type: "decrementIntervalIndex" });
+    intervalPresetsDispatch({type: "decrementIntervalIndex"});
   };
 
   const handleSetToIndexInterval = (index: number) => {
     clearInterval(intervalId); // Maybe?
-    intervalPresetsDispatch({ type: "setIntervalIndex", index });
+    intervalPresetsDispatch({type: "setIntervalIndex", index});
   };
 
   return <Timer audioRef={ref}
-    timerBar={
-      <TimeBar handleClick={handleSetToIndexInterval} intervalIndex={intervalIndex} timeInterval={currentTimeInterval} />
-    }
-    buttons={
-      <>
-        {isActive
-          ? <Button onClick={handlePauseInterval}> Pause </Button>
-          : <Button onClick={handleStartInterval}> Start </Button>}
-        <Button onClick={handleBackInterval}>Back</Button>
-        <Button onClick={handleSkipInterval}>Skip</Button>
-        <Button onClick={handleRestartTimer}> Restart</Button>
-      </>
-    } />
+                timerBar={
+                  <TimeBar handleClick={handleSetToIndexInterval} intervalIndex={intervalIndex}
+                           timeInterval={currentTimeInterval}/>
+                }
+                buttons={
+                  <>
+                    <Button onClick={handleStartInterval} isActive={isActive}
+                            variant={"accept"}> {isActive ? "Pause" : "Start"} </Button>
+                    <Button onClick={handleBackInterval} variant={"cancel"}>Back</Button>
+                    <Button onClick={handleSkipInterval} variant={"cancel"}>Skip</Button>
+                    <Button onClick={handleRestartTimer} variant={"cancel"}> Restart</Button>
+                  </>
+                }/>
 };
 
 

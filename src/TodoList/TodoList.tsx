@@ -10,6 +10,7 @@ const TodoList = () => {
   const [newGoal, setNewGoal] = useState<string>("");
   const [isVisible, setIsVisible] = useState<boolean>(false);
 
+  console.log("Loaded why?")
   const handlNewGoal = (event: ChangeEvent<HTMLInputElement>) => {
     setNewGoal(event.target.value)
   };

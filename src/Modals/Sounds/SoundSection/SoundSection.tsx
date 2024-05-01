@@ -1,9 +1,8 @@
 import React, {useRef, useState} from 'react';
 import {useSoundEffectContext} from "../../../Context/SoundEffectContext";
-import {Button} from "koi-pool";
 import {SoundEffect} from "../model/SoundEffect";
 import './SoundSection.css'
-
+import SoundButtons from "../SoundButtons/SoundButtons";
 const SoundSection = (soundEffect: SoundEffect) => {
     const {title, link, author, sound} = soundEffect;
     const {audioToPlay, volume, handleSound} = useSoundEffectContext();
@@ -38,15 +37,14 @@ const SoundSection = (soundEffect: SoundEffect) => {
             <audio ref={ref}>
                 <source src={sound}/>
             </audio>
-            <div>
+            <div className={"SoundTitle"}>
                 <h3>{title}</h3>
-                <p title={`Open link to sound effect: ${link}`} onClick={() => window.open(link)}>{author}</p>
+                <p title={`Open link to sound effect: ${link}`} className={"Title"} onClick={() => window.open(link)}>{author}</p>
             </div>
-            <div>
-                {isOn
-                    ? <Button onClick={handleStopSoundEffect} style={{width: "50px"}}>Stop</Button>
-                    : <Button onClick={handlePlaySoundEffect}>Play</Button>}
-            </div>
+            <div className={"SoundButtonGroup"}>
+
+                <SoundButtons isActive={isOn} handleStopSoundEffect={handleStopSoundEffect} handlePlaySoundEffect={handlePlaySoundEffect}/>
+        </div>
         </div>
     );
 };

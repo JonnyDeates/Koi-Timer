@@ -1,0 +1,8 @@
+.SoundList {
+    display: flex;
+    flex-wrap: wrap;
+}
+.SoundButton img {
+    width: 30px;
+    height: 30px;
+}
