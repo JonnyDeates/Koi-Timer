@@ -21,3 +21,7 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+app/node_modules/
+app/build/static/
+app/build
+dist/static/

@@ -1,4 +1,4 @@
-export type InfoType = { title: string, body: string, style: string, list?: string[] }
+export type InfoType = { title: string, body: string, className: string, list?: string[] }
 
 const InfoData: InfoType[] = [{
   title: 'The Pomodoro Technique',
@@ -11,7 +11,7 @@ const InfoData: InfoType[] = [{
     'distracted.\n' +
     'Following this leads to accomplishing what we want to do in the way we want to do it, and to enable\n' +
     'us to improve continually the way we work or study.',
-  style: 'explanation'
+  className: 'explanation'
 },
   {
     title: 'The Pomodoro Technique will provide a simple tool/process for improving productivity (your own and that of\n' +
@@ -22,7 +22,7 @@ const InfoData: InfoType[] = [{
       'Refine the estimation process, both in qualitative and quantitative terms', 'Improve your work or study process',
       'Strengthen your resolve to keep on applying yourself in the face of complex situations'
     ],
-    style: 'goals'
+    className: 'goals'
   },
   {
     title: 'At the beginning of each day select the tasks you need to complete and put them on the TODO list above.',
@@ -31,7 +31,7 @@ const InfoData: InfoType[] = [{
       'Take a short break (3-5 minutes)', 'Keep on working, Pomodoro after Pomodoro, until the task at hand is finished. Every 4 Pomodoros take a longer break, (15–30 minutes).',
       'Repeat'
     ],
-    style: 'instructions'
+    className: 'instructions'
   },
   {
     title: 'Tips',
@@ -41,7 +41,7 @@ const InfoData: InfoType[] = [{
       'The next Pomodoro will go better',
       'Login to the service and track your progress'
     ],
-    style: 'instructions'
+    className: 'instructions'
   },
 ];
 export default InfoData;

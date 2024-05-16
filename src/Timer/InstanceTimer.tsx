@@ -1,15 +1,15 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {useTimerContext} from "../Context/TimerContext";
+import React, { useEffect, useRef, useState } from 'react';
+import { useTimerContext } from "../Context/TimerContext";
 import "./Timer.css";
-import {useSoundEffectContext} from "../Context/SoundEffectContext";
-import {InstanceTimerType} from "../Context/reducers/InstanceTimerReducer";
+import { useSoundEffectContext } from "../Context/SoundEffectContext";
+import { InstanceTimerType } from "../Context/reducers/InstanceTimerReducer";
 import Timer from "./Timer";
 import { Button } from 'koi-pool';
 
 const InstanceTimer = () => {
-    const {volume} = useSoundEffectContext();
+    const { volume } = useSoundEffectContext();
     const {
-        currentTimerSelected: {count, isActive, currentTimer},
+        currentTimerSelected: { count, isActive, currentTimer },
         currentTimerDispatch,
         instanceTimer
     } = useTimerContext();
@@ -27,12 +27,12 @@ const InstanceTimer = () => {
         if (ref.current) {
             ref.current.pause();
         }
-        currentTimerDispatch({type: "setIsActive", isActive: false});
+        currentTimerDispatch({ type: "setIsActive", isActive: false });
     };
 
     const handleStartInterval = () => {
         const interval = setInterval(() => {
-            currentTimerDispatch({type: "decreaseCount"});
+            currentTimerDispatch({ type: "decreaseCount" });
             if (count <= 0 && ref.current) {
                 ref.current.volume = volume;
                 ref.current.pause();
@@ -43,6 +43,14 @@ const InstanceTimer = () => {
         setIntervalId(interval)
     };
 
+    const handleToggleInterval = () => {
+        if (isActive) {
+            handlePauseInterval()
+        } else {
+            handleStartInterval();
+        }
+    }
+    
     const handleRestartTimer = () => {
         clearInterval(intervalId);
         if (ref.current) {
@@ -50,17 +58,15 @@ const InstanceTimer = () => {
         }
         let instanceKey = currentTimer as InstanceTimerType;
         let newTime = instanceTimer[instanceKey];
-        currentTimerDispatch({type: "setCount", newTime, isActive: false});
+        currentTimerDispatch({ type: "setCount", newTime, isActive: false });
     };
 
     return (<Timer audioRef={ref} buttons={
-            <>
-                {isActive
-                    ? <Button onClick={handlePauseInterval}>Pause</Button>
-                    : <Button onClick={handleStartInterval}>Start</Button>}
-                <Button onClick={handleRestartTimer}>Restart</Button>
-            </>
-        }/>
+        <>
+            <Button onClick={handleToggleInterval} variant='accept' isActive={isActive}>{isActive ? "Pause" : "Start"}</Button>
+            <Button onClick={handleRestartTimer} variant='cancel'>Restart</Button>
+        </>
+    } />
     );
 };
 

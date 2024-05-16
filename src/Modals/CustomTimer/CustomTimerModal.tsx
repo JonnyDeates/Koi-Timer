@@ -13,7 +13,7 @@ const CustomTimerModal = () => {
     instanceTimer: {pomodoro, longBreak, shortBreak},
     unitOfTime,
     setUnitOfTime
-  } = useTimerContext();
+  } = useTimerContext(); 
 
   const handlePomodoro = (e: ChangeEvent<HTMLInputElement>) => {
     const float = parseFloat(e.target.value);

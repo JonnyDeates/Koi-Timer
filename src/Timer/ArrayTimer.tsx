@@ -39,9 +39,7 @@ const ArrayTimer = () => {
 
 
   const handleStartInterval = () => {
-    if (isActive) {
-      handlePauseInterval()
-    } else {
+
 
 
       const currentIntervalId = setInterval(() => {
@@ -68,9 +66,16 @@ const ArrayTimer = () => {
       }, 1000);
 
       setIntervalId(currentIntervalId)
-    }
   };
 
+  const handleToggleInterval = () =>{
+    if (isActive) {
+      handlePauseInterval();
+    } else {
+      handleStartInterval();
+    }
+
+  }
   const handleRestartTimer = () => {
     clearInterval(intervalId);
     if (ref.current) {
@@ -102,7 +107,7 @@ const ArrayTimer = () => {
                 }
                 buttons={
                   <>
-                    <Button onClick={handleStartInterval} isActive={isActive}
+                    <Button onClick={handleToggleInterval} isActive={isActive}
                             variant={"accept"}> {isActive ? "Pause" : "Start"} </Button>
                     <Button onClick={handleBackInterval} variant={"cancel"}>Back</Button>
                     <Button onClick={handleSkipInterval} variant={"cancel"}>Skip</Button>

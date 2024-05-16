@@ -1,0 +1,15 @@
+.Carousel {
+    background-color: aliceblue;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    min-height: 50vh;
+    /*height: 450px;*/
+    overflow: hidden;
+}
+.CarouselBody {
+    max-width: 1000px;
+    width: 60vw;
+    margin: auto;
+    padding: 0 1rem;
+}

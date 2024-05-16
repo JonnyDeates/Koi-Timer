@@ -1,12 +1,4 @@
-.info {
-    background-color: aliceblue;
-    display: flex;
-    justify-content: space-between;
-    position: relative;
-    min-height: 50vh;
-    /*height: 450px;*/
-    overflow: hidden;
-}
+
 .explanation > h3,.goals > h3, .instructions > h3 {
     opacity: 0;
     animation: 1s slide-in-down forwards;
@@ -23,38 +15,8 @@
     opacity: 0;
     animation: 1.75s fade-in forwards;
 }
-.info > div {
-    margin: auto 0;
-    min-width: 60vw;
-    max-width: 60vw;
-}
-.info > button {
-    margin: 0;
-    font-size: xx-large;
-    font-weight: 900;
-    height: inherit;
-    width: 10vw;
-    border: unset;
-    background-color: unset;
-    cursor: pointer;
-    position: relative;
-    opacity: 0;
-}
-.info > button:first-child {
-    left: 0;
-}
-.info > button:last-child {
-    right: 0;
-}
-.info > button:hover {
-    background-color: #00000011;
-}
-.info > button img {
-    width: 25px;
-}
-.info > button:first-child img {
-    transform: rotateZ(180deg);
-}
+
+
 .info > div > ol, .info > div > ul {
     text-align: left;
 }

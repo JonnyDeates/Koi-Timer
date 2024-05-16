@@ -25,9 +25,9 @@ const createServer = async () => {
     // app.use(errorHandler);
 
     // Configures SSR for react public and private applications
-    const publicRoutes = express.static("build");
+    const publicRoutes = express.static("build/static");
 
-    app.use("/", async function (req, res, next) {
+    app.use("/static", async function (req, res, next) {
             publicRoutes(req, res, next)
 
     });

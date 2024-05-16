@@ -1,7 +1,7 @@
 import React from 'react';
 import {InfoType} from "../data/InfoData";
-
-const InfoSection = ({body, list, style, title}: InfoType) => {
+import './InfoSection.css'
+const InfoSection = ({body, list, className, title}: InfoType) => {
 
   const BodyOfInfoSection = () => {
     if (!list) {
@@ -14,7 +14,7 @@ const InfoSection = ({body, list, style, title}: InfoType) => {
   };
 
   return (
-    <div className={style}>
+    <div className={`InfoSection ${className}`}>
       <h3>{title}</h3>
       {<BodyOfInfoSection/>}
     </div>

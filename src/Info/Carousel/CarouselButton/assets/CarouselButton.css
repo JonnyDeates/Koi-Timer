@@ -1,0 +1,27 @@
+.CarouselButton {
+    margin: 0;
+    height: 100%;
+    font-size: xx-large;
+    font-weight: 900;
+    height: inherit;
+    width: 10vw;
+    border: unset;
+    background-color: unset;
+    cursor: pointer;
+    position: relative;
+}
+.CarouselButton:not(.flipped)  {
+    left: 0;
+}
+.CarouselButton.flipped {
+    right: 0;
+}
+.CarouselButton:hover {
+    background-color: #d9d9d9;
+}
+.CarouselButton img {
+    width: 25px;
+}
+.CarouselButton:not(.flipped) img {
+    transform: rotateZ(180deg);
+}
