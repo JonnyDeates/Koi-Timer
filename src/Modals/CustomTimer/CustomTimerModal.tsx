@@ -6,6 +6,7 @@ import hoursHourGlass from "./assets/timer-icon-hours.png"
 import minutesHourGlass from "./assets/timer-icon-minutes.png"
 import secondsHourGlass from "./assets/timer-icon-seconds.png"
 import {convertFromSecondsToOtherUnits, convertFromUnitOfTimeToSeconds} from "../../Utlis/Converters";
+import TripleSelectActionButton from './TripleSelectButton/TripleSelectActionButton';
 
 const CustomTimerModal = () => {
   const {
@@ -43,8 +44,8 @@ const CustomTimerModal = () => {
   return (<>
 
       <div className="customtimes-form">
-        <h2>Select Unit of Time</h2>
-
+        <h2>Unit of Time</h2>
+        <p>The unit of time that the </p>
         <div className="radio">
           <LabeledIconButton src={secondsHourGlass} label={"Second"} isActive={unitOfTime === 'second'}
                              variant={'standard'}
@@ -56,7 +57,7 @@ const CustomTimerModal = () => {
                              onClick={handleSetHours} title={"Set unit of time to Hours"}/>
         </div>
         <div className={"divider"}/>
-
+        <TripleSelectActionButton/>
         <h2>Set Timers</h2>
         <div className='Input-wrapper'>
           <FloatingLabelInput label={"Pomodoro"} type="number" value={convertFromSecondsToOtherUnits(unitOfTime, pomodoro)}
