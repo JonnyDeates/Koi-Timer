@@ -1,0 +1,13 @@
+.DirectTimerEditing {
+
+}
+.DirectTimerEditing span {
+    font-size: 4em;
+}
+.DirectTimerEditing input {
+    font-size: 4em;
+    width: 180px;
+    margin: 6rem 0;
+    background-color: unset;
+    border: unset;
+}

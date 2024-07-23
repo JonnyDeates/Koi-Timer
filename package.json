@@ -1,40 +1,24 @@
 {
-  "name": "koitimer",
-  "version": "2.0.0",
-  "private": true,
-  "type": "module",
-  "dependencies": {
-    "@paralleldrive/cuid2": "^2.2.2",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-helmet": "^6.1.0",
-    "koi-pool": "^0.0.19",
-    "vite": "^5.2.11"
-  },
-  "scripts": {
-    "dev": "vite dev --port 5002",
-    "build": "vite build",
-    "start": "vite preview",
-    "test": "vitest run"
-  },
+  "name": "koi-timer",
   "description": "The Koi Timer is the one stop shop for all your pomodoro time needs.",
-  "main": "index.js",
-  "devDependencies": { 
-    "@types/jest": "^29.5.12",
-    "@types/react": "^18.3.2",
-    "@types/react-dom": "^18.3.0",
-    "@types/react-helmet": "^6.1.11",
-    "@vitejs/plugin-react-swc": "^3.6.0",
-    "typescript": "^5.4.5"
+  "version": "2.0.1",
+  "private": true,
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "build": "pnpm -r --parallel --filter ./apps/backend --filter ./apps/public run build ",
+    "dev": "turbo run dev",
+    "frontendDev": "pnpm -r --filter ./apps/public run dev",
+    "monorepo": "pnpm -r --filter ./apps/backend run monorepo",
+    "predeploy": "pnpm run build && pnpm -r --filter ./apps/backend run copyFrontend && docker build . -t jondeates/appliance-remedy:$npm_package_version -t jondeates/appliance-remedy:latest",
+    "deploy": "pnpm run predeploy && docker push jondeates/appliance-remedy:$npm_package_version && docker push jondeates/appliance-remedy:latest"
   },
-  "author": "Jon Deates",
-  "license": "ISC",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/JonnyDeates/Koi-Timer.git"
+  "devDependencies": {
+    "turbo": "^2.0.3"
   },
-  "bugs": {
-    "url": "https://github.com/JonnyDeates/Koi-Timer/issues"
+  "engines": {
+    "node": ">=14.0.0"
   },
-  "homepage": ""
+  "packageManager": "pnpm@8.15.3"
 }
