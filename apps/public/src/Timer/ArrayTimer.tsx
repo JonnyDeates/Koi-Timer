@@ -6,10 +6,12 @@ import Timer from "./Timer";
 import {Button} from "koi-pool";
 import TimeBar from '../TimeBar/TimeBar';
 
+
 const ArrayTimer = () => {
   const {
     intervalPresets: {presets, currentPresetId, intervalIndex},
     currentTimerSelected: {isActive, count},
+    isEditingTimer,
     currentTimerDispatch,
     intervalPresetsDispatch
   } = useTimerContext();
@@ -22,8 +24,30 @@ const ArrayTimer = () => {
     if (!isActive && intervalId) {
       clearInterval(intervalId)
     }
-      return () => clearInterval(intervalId)
+    return () => clearInterval(intervalId)
   }, [isActive]);
+
+  useEffect(() => {
+    if (count <= 0 && !isEditingTimer) {
+      if (currentTimeInterval.length - 1 !== intervalIndex) {
+        if (ref.current) {
+          ref.current.volume = volume;
+          ref.current.pause();
+          ref.current.load();
+          ref.current.play();
+        }
+        intervalPresetsDispatch({type: "incrementIntervalIndex"});
+      } else {
+        if (ref.current) {
+          ref.current.volume = volume;
+          ref.current.pause();
+          ref.current.load();
+          ref.current.play();
+        }
+        clearInterval(intervalId);
+      }
+    }
+  }, [count, isEditingTimer]);
 
   useEffect(() => {
     let newTime = currentTimeInterval[intervalIndex];
@@ -38,45 +62,23 @@ const ArrayTimer = () => {
     currentTimerDispatch({type: "setIsActive", isActive: false});
   };
 
-
   const handleStartInterval = () => {
+    const currentIntervalId = setInterval(() => {
+      currentTimerDispatch({type: "decreaseCount"});
+    }, 1000);
 
-
-
-      const currentIntervalId = setInterval(() => {
-        currentTimerDispatch({type: "decreaseCount"});
-
-        if (currentTimeInterval.length !== intervalIndex && count <= 0) {
-          if (ref.current) {
-            ref.current.volume = volume;
-            ref.current.pause();
-            ref.current.load();
-            ref.current.play();
-          }
-          intervalPresetsDispatch({type: "incrementIntervalIndex"});
-        } else if (count <= 0) {
-          if (ref.current) {
-            ref.current.volume = volume;
-            ref.current.pause();
-            ref.current.load();
-            ref.current.play();
-          }
-          // intervalPresetsDispatch({type:"incrementIntervalIndex"});
-          clearInterval(intervalId);
-        }
-      }, 1000);
-
-      setIntervalId(currentIntervalId)
+    setIntervalId(currentIntervalId)
   };
 
-  const handleToggleInterval = () =>{
+
+  const handleToggleInterval = () => {
     if (isActive) {
       handlePauseInterval();
     } else {
       handleStartInterval();
     }
+  };
 
-  }
   const handleRestartTimer = () => {
     clearInterval(intervalId);
     if (ref.current) {

@@ -53,14 +53,6 @@ const TimerContextProvider = ({children}: { children: ReactNode }) => {
     count: 25 * 60,
   });
 
-  useEffect(()=>{
-    if(isEditingTimer && currentTimerSelected.isActive === true) {
-    setIsEditingTimer(false);
-    }
-    console.log(currentTimerSelected)
-  }, [currentTimerSelected.isActive, currentTimerSelected.currentTimer])
-
-
 
   const value:TimerContextType = useMemo(() => ({
     currentTimerSelected,

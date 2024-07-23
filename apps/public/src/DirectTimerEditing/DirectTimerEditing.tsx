@@ -27,17 +27,17 @@ const handleLimitToSetter = (event: ChangeEvent<HTMLInputElement>, setter: Dispa
         }
   }
 const DirectTimerEditing = () => {
-    const {currentTimerSelected: {count}, currentTimerDispatch, setIsEditingTimer} = useTimerContext();
+    const {currentTimerSelected: {count, currentTimer}, currentTimerDispatch, setIsEditingTimer} = useTimerContext();
 
-    const [hours, setHours] = useState<string>('')
-    const [minutes, setMinutes] = useState<string>('')
-    const [seconds, setSeconds] = useState<string>('')
+    const [hours, setHours] = useState<string>('');
+    const [minutes, setMinutes] = useState<string>('');
+    const [seconds, setSeconds] = useState<string>('');
     
   useEffect(()=> {
     handleInitialTimeSet(setSeconds, count % 60,);
     handleInitialTimeSet(setMinutes, Math.floor(count / 60) - (Math.floor(count / 3600) * 60));
     handleInitialTimeSet(setHours, Math.floor(count / 3600));
-    }, [])
+    }, [currentTimer]);
 
 
   useEffect(()=> {
@@ -45,14 +45,14 @@ const DirectTimerEditing = () => {
     const mins = isNaN(Number(minutes)) ? 0 : Number(minutes);
     const hs = isNaN(Number(hours)) ? 0 : Number(hours);
 
-  const newCount = (hs * 3600) + (mins * 60) + secs
+  const newCount = (hs * 3600) + (mins * 60) + secs;
     if(!isNaN(newCount) && count !== newCount) {
     currentTimerDispatch({type: "setCount", newTime: newCount}) 
     }
-  }, [hours, minutes, seconds])
+  }, [hours, minutes, seconds]);
 
-
-    return <div className='DirectTimerEditing' onDoubleClick={()=> setIsEditingTimer(false)}>
+  //onBlur={()=> setIsEditingTimer(false)}>
+    return <div className='DirectTimerEditing' >
         <input type={"number"}  placeholder='00' value={hours}
                onChange={(event) => handleLimitToSetter(event, setHours,100)}
               />
