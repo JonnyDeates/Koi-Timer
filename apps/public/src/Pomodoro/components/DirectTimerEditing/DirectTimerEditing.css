@@ -1,0 +1,25 @@
+.DirectTimerEditing {
+
+}
+.DirectTimerEditing span {
+    font-size: 4em;
+    font-family: "Neuton", serif;
+}
+.DirectTimerEditing input {
+    font-size: 4em;
+    width: 180px;
+    padding: 4rem 0;
+    background-color: unset;
+    border: unset;
+    font-family: "Neuton Bold", serif;
+}
+@media (min-width: 480px) {
+    .DirectTimerEditing input, .DirectTimerEditing span {
+        font-size: 7em;
+    }
+}
+@media (min-width: 767px) {
+    .DirectTimerEditing input, .DirectTimerEditing span {
+        font-size: 9em;
+    }
+}

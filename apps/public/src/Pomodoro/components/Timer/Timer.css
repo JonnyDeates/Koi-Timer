@@ -1,0 +1,38 @@
+.Timer {
+    min-height: 50vh;
+}
+.Timer > h1 {
+    padding: 3rem 0;
+    font-size: 6em;
+    margin: 0;
+    font-family: "Neuton Bold", serif;
+    -webkit-animation: 0.3s popIn forwards;
+    -o-animation: 0.3s popIn forwards;
+    animation: 0.3s popIn forwards;
+}
+
+.TimerButtons {
+    display: flex;
+    justify-content: space-evenly;
+}
+.TimerButtons button {
+    font-family: "Neuton Bold", serif;
+    margin: 8px;
+}
+
+@media (min-width: 480px) {
+    .Timer > h1 {
+        padding: 4rem 0;
+        font-size: 7em;
+    }
+
+    .TimerButtons button {
+        margin: 8px 16px;
+    }
+}
+@media (min-width: 767px) {
+    .Timer > h1 {
+        padding: 4rem 0;
+        font-size: 9em;
+    }
+}

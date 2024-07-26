@@ -1,0 +1,44 @@
+.TodoListItem {
+    display: flex;
+    justify-content: space-evenly;
+    position: relative;
+    padding: 0 1rem;
+    font-size: large;
+   height: 60px;
+    animation: 2s popIn forwards;
+}
+.TodoListItem:nth-child(odd){
+    background-color: #00000022;
+}
+.TodoListItem button img {
+    width: 24px;
+    height: 24px
+}
+.TodoListItem  p{
+    max-width: 700px;
+    width: 30vw;
+    min-width: 201px;
+}
+.TodoListItem button, .TodoListItem input[type=checkbox] {
+    margin: auto 0;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+.TodoListItem input[type=text]{
+    height: 30px;
+    margin: auto 0;
+}
+.TodoListItemEdit {
+    width: 50vw;
+    border-radius: 8px;
+}
+@media (min-width: 480px) {
+    .TodoListItem {
+        border-radius: 4px;
+    }
+    .TodoListItem  p{
+        width: 50vw;
+        min-width: 225px;
+    }
+}

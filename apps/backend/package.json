@@ -4,17 +4,15 @@
   "description": "",
   "scripts": {
     "clean": "rmdir /s /q .\\build && mkdir .\\build",
-    "copyFrontend": "xcopy ..\\dist\\static .\\build\\static /I && copy ..\\dist\\index.html .\\build\\index.html /Y",
-    "buildFrontend": "npm run clean && cd ../.. && npm run build && cd ./app && npm run copyFrontend",
-    "monorepo": "tsx watch src/index.ts",
-    "build": "npm run buildFrontend && esbuild src/index.ts --bundle --platform=node --outfile=dist/index.js --external:express --external:cors",
-    "start": "node ../../app/dist/index.js",
-    "type-check": "tsc",
-    "predeploy": "docker build . -t jondeates/koi-timer:%npm_package_version% -t jondeates/koi-timer:latest",
-    "deploy": "npm run predeploy && docker push jondeates/koi-timer:%npm_package_version% && docker push jondeates/koi-timer:latest"
+    "copyFrontend": "cp ./sitemap/* ./build/ && cp -r ../public/dist/* ./build/",
+    "dev": "tsx watch src/index.ts",
+    "build": "esbuild src/index.ts --bundle --minify --platform=node --outfile=dist/index.js --external:express --external:cors",
+    "buildFrontend": "cd ../../ && pnpm build && cd - && pnpm copyFrontend",
+    "monorepo": "pnpm run buildFrontend && tsx watch src/index.ts",
+    "start": "node dist/index.js",
+    "type-check": "tsc"
   },
   "dependencies": {
-    "body-parser": "^1.20.2",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "express": "^4.19.2",
@@ -27,10 +25,10 @@
     "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
     "@types/morgan": "^1.9.9",
-    "@types/uuid": "9.0.8",
+    "@types/uuid": "10.0.0",
     "dotenv": "^16.4.5",
-    "esbuild": "^0.20.2",
-    "tsx": "^4.8.2",
-    "typescript": "^5.4.5"
+    "esbuild": "^0.23.0",
+    "tsx": "^4.16.2",
+    "typescript": "^5.5.4"
   }
 }

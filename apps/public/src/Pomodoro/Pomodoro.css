@@ -1,6 +1,5 @@
-.body {
-    min-height: 70vh;
-}
-.timer {
-    font-size: xx-large;
+
+.Pomodoro button {
+    width: 145px;
+    font-family: "Neuton Bold", serif;
 }

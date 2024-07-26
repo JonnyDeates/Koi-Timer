@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import InfoSection from "./InfoSection/InfoSection";
 import arrow from './Carousel/CarouselButton/assets/arrow.png'
-import TrackVisibility from "../Utlis/TrackVisibility";
+import TrackVisibility from "../utils/TrackVisibility";
 import InfoData, { InfoType } from "./data/InfoData";
 import './Info.css'
 import { Carousel } from './Carousel/Carousel';

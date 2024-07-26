@@ -1,5 +1,4 @@
 import express, {Request, Response} from 'express'
-import bodyParser from "body-parser";
 import cookieParser from 'cookie-parser'
 import config from "./config";
 import morganConfig from "./configuration/morgan";
@@ -9,20 +8,24 @@ import path from "path";
 
 const sendIndexHtml = (req: Request, res: Response, status: number = 200) => {
     const directoryToBuild = path.join(__dirname.substring(0, __dirname.length - 4), 'build', 'index.html');
-
+    res.status(status)
     res.sendFile(directoryToBuild);
 };
 
 const createServer = async () => {
 
     const app = express();
-    app.use(bodyParser.json());
-    app.use(bodyParser.urlencoded({extended: true}));
+    app.use(express.json());
+    app.use(express.urlencoded());
     app.use(morganConfig());
     app.use(corsConfig());
     app.use(helmetConfig());
     app.use(cookieParser());
     // app.use(errorHandler);
+
+    app.use("/sitemap.xml", async function (req, res, next) {
+        express.static("build/sitemap.xml")(req, res, next)
+    });
 
     // Configures SSR for react public and private applications
     const publicRoutes = express.static("build/static");

@@ -1,11 +1,10 @@
 import React from 'react';
-import InstanceTimer from "../Timer/InstanceTimer";
-import ArrayTimer from "../Timer/ArrayTimer";
-import './Pomodoro.css'
-import {useTimerContext} from "../Context/TimerContext";
-import {CurrentSelectedTimerType} from "../Context/reducers/ActiveTimerReducer";
+import InstanceTimer from "./components/InstanceTimer/InstanceTimer";
+import ArrayTimer from "./components/ArrayTimer/ArrayTimer";
+import {useTimerContext} from "../contexts/TimerContext";
+import {CurrentSelectedTimerType} from "../contexts/reducers/ActiveTimerReducer";
 import { Button } from 'koi-pool';
-
+import './Pomodoro.css'
 const Pomodoro = () => {
     const {
         currentTimerSelected: { currentTimer},
@@ -23,7 +22,6 @@ const Pomodoro = () => {
             newTime = instanceTimer[currentSelectedKey]; // Convert to minutes
         }
         currentTimerDispatch({type: 'setActiveTimer', newTime, currentTimer: currentSelectedKey});
-
     };
 
     const controlButtons: { text: string, currentSelectedKey: CurrentSelectedTimerType }[] = [
@@ -36,7 +34,7 @@ const Pomodoro = () => {
     const isIntervalSelected = currentTimer === 'interval';
 
     return (
-        <div className="body">
+        <div className="Pomodoro">
             {controlButtons.map(({text, currentSelectedKey}, i) =>
                 <Button variant='accept' key={currentSelectedKey + i} isActive={currentTimer === currentSelectedKey}
                         onClick={() => handleSetCount(currentSelectedKey)}>

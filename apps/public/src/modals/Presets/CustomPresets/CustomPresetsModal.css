@@ -1,0 +1,43 @@
+.CustomPresetsModal {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-around;
+}
+.CustomPresetsModalButtonWrapper > input {
+max-width: 90px;
+    font-family: Neuton, serif;
+}
+
+.CustomPresetsModalButtonWrapper > button {
+    padding: 0 0 0 5px;
+}
+.CustomPresetsModalButtons   {
+display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    flex-wrap: wrap;
+}
+.CustomPresetsModalButtons > button{
+    margin: 6px;
+    padding: 12px;
+    font-family: "Neuton Bold", serif;
+    width: 120px;
+}
+.CustomPresetsModalActionGroup > button {
+    margin: 0;
+}
+@media (min-width: 480px) {
+    .CustomPresetsModalButtons > button {
+        width: 150px;
+        margin: 6px;
+    }
+    .CustomPresetsModalActionGroup > button {
+        margin: 6px;
+    }
+
+    .CustomPresetsModalButtonWrapper > input {
+        max-width: 128px;
+        font-family: Neuton, serif;
+    }
+
+}

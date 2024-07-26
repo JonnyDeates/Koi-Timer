@@ -27,7 +27,7 @@ const InfoData: InfoType[] = [{
   {
     title: 'At the beginning of each day select the tasks you need to complete and put them on the TODO list above.',
     body: 'ol',
-    list: ['Start the Pomodoro timer', 'Work until the Pomodoro rings',
+    list: ['Start the Pomodoro Timer', 'Work until the Pomodoro rings',
       'Take a short break (3-5 minutes)', 'Keep on working, Pomodoro after Pomodoro, until the task at hand is finished. Every 4 Pomodoros take a longer break, (15–30 minutes).',
       'Repeat'
     ],

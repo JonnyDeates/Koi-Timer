@@ -1,13 +1,20 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+  font-family: "Neuton", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+@font-face {
+  font-family: "Neuton Bold";
+  src: url("./fonts/neuton-bold.ttf");
+}
+@font-face {
+  font-family: "Merit";
+  src: url("./fonts/merit4.ttf");
+}
+@font-face {
+  font-family: "Neuton";
+  src: url("./fonts/neuton-regular.ttf");
 }

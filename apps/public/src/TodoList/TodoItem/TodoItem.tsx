@@ -1,15 +1,16 @@
 import React, {ChangeEvent, KeyboardEvent, Dispatch} from 'react';
-import pencil from '../../assets/icons/Pencil.png'
+import pencil from '../assets/pencil.svg'
+import trash from '../assets/trash.svg'
+import add from '../assets/add.svg'
 import {Todo, TodoReducerAction} from "../reducer/todosReducer";
 import { IconButton } from 'koi-pool';
-
+import './TodoItem.css'
 
 type TodoItemProps = Todo & {
   id: string,
   todosDispatch: Dispatch<TodoReducerAction>,
-  bgColor: string
 }
-const TodoItem = ({id, checked, goal, isEditing, bgColor, todosDispatch}: TodoItemProps) => {
+const TodoItem = ({id, checked, goal, isEditing,  todosDispatch}: TodoItemProps) => {
 
   const handleKeyPress = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
@@ -31,21 +32,22 @@ const TodoItem = ({id, checked, goal, isEditing, bgColor, todosDispatch}: TodoIt
     todosDispatch({type: "toggleGoalCheck", id});
   };
   return (
-    <div className={'todolist-item ' + bgColor}>
+    <div className={'TodoListItem'}>
       <input type='checkbox' onChange={handleChecked}
              checked={checked}/>{
       isEditing
-        ? <input className={'todolist-item-edit'} value={goal}
-                 onChange={handleEdit}
-                 onKeyPress={handleKeyPress}/>
+        ? <input className={'TodoListItemEdit'} value={goal}
+                 onChange={handleEdit} type={'text'}
+                 onKeyDown={handleKeyPress}
+                 />
         : <p onDoubleClick={toggleEdit}>{goal}</p>
     }
       <IconButton onClick={toggleEdit} alt={'Edit'}  src={
         isEditing
-          ? '+'
+          ? add
           : pencil
       }/>
-      <IconButton alt={'X'} src={''} onClick={deleteGoal}>x</IconButton>
+      <IconButton alt={'X'} src={trash} onClick={deleteGoal}>x</IconButton>
     </div>
   );
 };

@@ -1,102 +1,24 @@
-.nav {
-    justify-content: space-evenly;
+.Header {
+    padding: 16px;
     display: flex;
-    position: absolute;
-    width: 100%;
-    top: 0;
-    left: 0;
-    background-color: white;
+    justify-content: space-between;
 }
-.nav > button {
-    margin: 0 0;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-    border: unset;
-    cursor: pointer;
-    color: #11111188;
-    font-size: medium;
-    background-color: white;
-    border: unset;
-    padding: 8px;
-    font-weight: 700;
-    opacity: 0;
-    -webkit-animation: 1s slide-in-down forwards;
-    -o-animation: 1s slide-in-down forwards;
-    animation: 1s slide-in-down forwards;
-}
-.nav > button:nth-child(2){
-    animation-delay: 0.25s;
-}
-.nav > button:nth-child(3){
-    animation-delay: 0.5s;
-}
-.nav > button:hover {
-    background-color: #00000011;
-}
-.header {
-    padding: 16px
-}
-.header nav > h1 {
+.Header h1 {
     text-align: left;
     font-size: 2.5em;
     color: white;
     text-shadow: 2px 2px 3px #00000044;
 }
-.header nav h1 > span{
+.Header h1 span{
     opacity: 0;
 }
-.header nav h1 > img {
+.Header h1 img {
     width: 25px;
     box-shadow: 1px 1px 2px black;
     border-radius: 100%;
     opacity: 0;
 }
-.header nav {
-    display: flex;
-    justify-content: space-between;
-}
-@media (min-width: 480px) {
-    .nav {
-        justify-content: flex-end;
-        display: flex;
-        position: absolute;
-        width: 100%;
-        background-color: unset;
-        right: 0;
-        top: 0;
-    }
-    .nav > button {
-        margin: 0 12px;
-        border-bottom-left-radius: 8px;
-        border-bottom-right-radius: 8px;
-        border: unset;
-        box-shadow: 3px 4px 5px 2px hsla(0,0%,100%,.1), 1px 2px 2px 1px hsla(0,0%,78.4%,.3);
-        cursor: pointer;
-        font-size: large;
-        background-color: white;
-    }
-    .nav > button:hover {
-        background-color: #ffffffaa;
-    }
-}
-
-@media (min-width: 767px) {
-    .nav {
-        justify-content: flex-end;
-        display: flex;
-        position: absolute;
-        right: 0;
-        top: 0;
-    }
-    .nav > button {
-        margin: 0 16px;
-        border-bottom-left-radius: 10px;
-        border-bottom-right-radius: 10px;
-        border: unset;
-        box-shadow: 3px 4px 5px 2px hsla(0,0%,100%,.1), 1px 2px 2px 1px hsla(0,0%,78.4%,.3);
-        cursor: pointer;
-        font-size: large;
-        background-color: white;
-        padding: 16px;
-    }
+.ModalActionGroup button{
+    width: 200px;
+    font-family: "Neuton Bold", serif;
 }
