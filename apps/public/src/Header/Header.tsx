@@ -31,7 +31,6 @@ const Header = () => {
         <IconButton src={settings} variant='accept' onClick={handleOpenSettingsModal}/>
       </nav>
       <GenericModalWithTabs tabs={[
-        {title: "Custom Timer", body: <CustomTimerModal/>},
         {
           title: "Presets",
           body: <PresetsModal/>,

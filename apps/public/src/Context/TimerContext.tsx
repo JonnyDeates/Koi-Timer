@@ -27,8 +27,6 @@ export type TimerContextType = {
   intervalPresetsDispatch: Dispatch<IntervalPresetsReducerAction>,
   unitOfTime: UnitOfTimeType,
   setUnitOfTime: Dispatch<SetStateAction<UnitOfTimeType>>,
-  isEditingTimer: boolean,
-  setIsEditingTimer: Dispatch<SetStateAction<boolean>>
 }
 
 
@@ -36,7 +34,6 @@ export const TimerContext = createContext<TimerContextType>({} as TimerContextTy
 
 const TimerContextProvider = ({children}: { children: ReactNode }) => {
   const [unitOfTime, setUnitOfTime] = useState<UnitOfTimeType>('minute');
-  const [isEditingTimer, setIsEditingTimer] = useState<boolean>(false)
   const [instanceTimer, instanceTimerDispatch] = useReducer(instanceTimerReducer, {
     pomodoro: DEFAULT_POMODORO,
     shortBreak: DEFAULT_SHORT_BREAK,
@@ -49,8 +46,10 @@ const TimerContextProvider = ({children}: { children: ReactNode }) => {
   });
   const [currentTimerSelected, currentTimerDispatch] = useReducer(activeTimerReducer, {
     isActive: false,
+    isEditingTimer: false,
     currentTimer: "pomodoro",
     count: 25 * 60,
+    startingTime: Infinity
   });
 
 
@@ -63,9 +62,7 @@ const TimerContextProvider = ({children}: { children: ReactNode }) => {
     intervalPresetsDispatch,
     unitOfTime,
     setUnitOfTime,
-    isEditingTimer,
-    setIsEditingTimer
-  }), [currentTimerSelected, instanceTimer, unitOfTime, intervalPresets, isEditingTimer]);
+  }), [currentTimerSelected, instanceTimer, unitOfTime, intervalPresets ]);
 
   return <TimerContext.Provider value={value}>
     {children}

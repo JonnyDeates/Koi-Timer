@@ -27,7 +27,7 @@ const handleLimitToSetter = (event: ChangeEvent<HTMLInputElement>, setter: Dispa
         }
   }
 const DirectTimerEditing = () => {
-    const {currentTimerSelected: {count, currentTimer}, currentTimerDispatch, setIsEditingTimer} = useTimerContext();
+    const {currentTimerSelected: {count, currentTimer}, currentTimerDispatch } = useTimerContext();
 
     const [hours, setHours] = useState<string>('');
     const [minutes, setMinutes] = useState<string>('');

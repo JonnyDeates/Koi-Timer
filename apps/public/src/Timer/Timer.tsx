@@ -15,15 +15,12 @@ const Timer = ({buttons, audioRef, timerBar}: TimerProps) => {
     const {audioToPlay: {sound}} = useSoundEffectContext();
 
     const {
-        isEditingTimer,
-        setIsEditingTimer,
-        currentTimerSelected: {count},
+        currentTimerSelected: {count, isEditingTimer},
         currentTimerDispatch
     } = useTimerContext();
 
     const handleDblClick = () => {
-      setIsEditingTimer(true)
-      currentTimerDispatch({type:"setIsActive", isActive: false})
+      currentTimerDispatch({type:"setIsEditingTimer", isEditingTimer: true})
     }
     const title = getTime(count);
     return (

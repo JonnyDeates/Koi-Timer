@@ -5,6 +5,7 @@ import React, {ChangeEvent, useState} from "react";
 import {round} from "../../Utlis/TimerUtils";
 import {useTimerContext} from "../../Context/TimerContext";
 import './CustomPresetsModal.css'
+import {SelectUnitOfTime} from "../components/SelectUnitOfTime/SelectUnitOfTime";
 type CustomPresetsModalProps = {
   handleClose: () => void,
   isOpen: boolean,
@@ -58,6 +59,7 @@ const CustomPresetsModal = ({handleClose, isOpen}: CustomPresetsModalProps) => {
     <SpacedLabelInput label={'Title'} value={title} onChange={(e) => setTitle(e.target.value)}/>
     <SpacedLabelInput label={'Description'} value={description} onChange={(e) => setDescription(e.target.value)}
                         width={'50%'}/>
+    <SelectUnitOfTime size={'small'}/>
     <div>
       <Button onClick={() => handleAddTimeIntervalToCurrent(pomodoro)}>
         Pomodoro

@@ -10,8 +10,7 @@ import TimeBar from '../TimeBar/TimeBar';
 const ArrayTimer = () => {
   const {
     intervalPresets: {presets, currentPresetId, intervalIndex},
-    currentTimerSelected: {isActive, count},
-    isEditingTimer,
+    currentTimerSelected: {isActive, count, isEditingTimer},
     currentTimerDispatch,
     intervalPresetsDispatch
   } = useTimerContext();
@@ -51,7 +50,7 @@ const ArrayTimer = () => {
 
   useEffect(() => {
     let newTime = currentTimeInterval[intervalIndex];
-    currentTimerDispatch({type: "setCount", newTime});
+    currentTimerDispatch({type: "setCount", newTime, isEditingTimer: false});
   }, [intervalIndex, currentPresetId]);
 
   const handlePauseInterval = () => {

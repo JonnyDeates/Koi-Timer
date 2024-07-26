@@ -11,7 +11,9 @@ body::-webkit-scrollbar {
 }
 .App {
   text-align: center;
-  background-color: #7bc9ff;
+  background: linear-gradient(-45deg, #7bc9ff, #000000, #7bc9ff, #ffffff);
+  animation: gradient 60s infinite;
+  background-size: 400% 400%;
 }
 .infoButton {
   position: absolute;
@@ -97,5 +99,13 @@ body::-webkit-scrollbar {
   to {
     transform: rotate(360deg);
     opacity: 1;
+  }
+}
+@keyframes gradient {
+  0%, 100% {
+    background-position: 50%;
+  }
+  50% {
+    background-position: 0;
   }
 }

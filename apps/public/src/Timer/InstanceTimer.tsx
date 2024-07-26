@@ -9,7 +9,7 @@ import { Button } from 'koi-pool';
 const InstanceTimer = () => {
     const { volume } = useSoundEffectContext();
     const {
-        currentTimerSelected: { count, isActive, currentTimer },
+        currentTimerSelected: { count, isActive, currentTimer, isEditingTimer },
         currentTimerDispatch,
         instanceTimer
     } = useTimerContext();
@@ -23,6 +23,20 @@ const InstanceTimer = () => {
         }
       return ()=> clearInterval(intervalId)
     }, [isActive]);
+
+    useEffect(() => {
+        if (count <= 0 && !isEditingTimer) {
+                if (ref.current) {
+                    ref.current.volume = volume;
+                    ref.current.pause();
+                    ref.current.load();
+                    ref.current.play();
+                }
+                currentTimerDispatch({type: "setIsActive", isActive: false})
+                clearInterval(intervalId);
+        }
+    }, [count, isEditingTimer]);
+
     const handlePauseInterval = () => {
         clearInterval(intervalId);
         if (ref.current) {
@@ -32,14 +46,11 @@ const InstanceTimer = () => {
     };
 
     const handleStartInterval = () => {
+        if(count === 0) {
+           handleSetTimer(true)
+        }
         const interval = setInterval(() => {
-            currentTimerDispatch({ type: "decreaseCount" });
-            if (count <= 0 && ref.current) {
-                ref.current.volume = volume;
-                ref.current.pause();
-                ref.current.load();
-                ref.current.play();
-            }
+            currentTimerDispatch({type: "decreaseCount"});
         }, 1000);
         setIntervalId(interval)
     };
@@ -51,15 +62,20 @@ const InstanceTimer = () => {
             handleStartInterval();
         }
     }
-    
+
+
+    function handleSetTimer(startTimer: boolean) {
+        let instanceKey = currentTimer as InstanceTimerType;
+        let newTime = instanceTimer[instanceKey];
+        currentTimerDispatch({type: "setCount", newTime, isActive: startTimer});
+    }
+
     const handleRestartTimer = () => {
         clearInterval(intervalId);
         if (ref.current) {
             ref.current.pause();
         }
-        let instanceKey = currentTimer as InstanceTimerType;
-        let newTime = instanceTimer[instanceKey];
-        currentTimerDispatch({ type: "setCount", newTime, isActive: false });
+        handleSetTimer(false);
     };
 
     return (<Timer audioRef={ref} buttons={

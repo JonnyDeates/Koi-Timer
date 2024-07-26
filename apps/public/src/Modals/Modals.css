@@ -27,14 +27,6 @@
     /*animation: 2s popIn forwards;*/
 }
 
-.customtimes-form > label {
-
-}
-
-.customtimes-form > label > input {
-
-}
-
 .presets::-webkit-scrollbar-thumb, .customtimes::-webkit-scrollbar-thumb {
     border: unset;
     background: lightgray;
@@ -64,10 +56,7 @@
     background-color: lightgray;
 }
 
-.radio {
-    display: flex;
-    justify-content: space-evenly;
-}
+
 
 .customtimes-form h2, .custom-preset h2 {
     color: white;
