@@ -7,7 +7,7 @@
 }
 .DirectTimerEditing input {
     font-size: 4em;
-    width: 180px;
+    width: 100px;
     padding: 4rem 0;
     background-color: unset;
     border: unset;
@@ -16,10 +16,12 @@
 @media (min-width: 480px) {
     .DirectTimerEditing input, .DirectTimerEditing span {
         font-size: 7em;
+        width: 140px;
     }
 }
 @media (min-width: 767px) {
     .DirectTimerEditing input, .DirectTimerEditing span {
         font-size: 9em;
+        width: 180px;
     }
 }

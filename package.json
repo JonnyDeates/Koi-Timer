@@ -11,8 +11,8 @@
     "dev": "turbo run dev",
     "frontendDev": "pnpm -r --filter ./apps/public run dev",
     "monorepo": "pnpm -r --filter ./apps/backend run monorepo",
-    "predeploy": "pnpm run build && pnpm -r --filter ./apps/backend run copyFrontend && docker build . -t jondeates/koi-timer:%npm_package_version% -t jondeates/koi-timer:latest",
-    "deploy": "npm run predeploy && docker push jondeates/koi-timer:%npm_package_version% && docker push jondeates/koi-timer:latest"
+    "predeploy": "pnpm run build && pnpm -r --filter ./apps/backend run copyFrontend && docker build . -t jondeates/koi-timer:$npm_package_version -t jondeates/koi-timer:latest",
+    "deploy": "npm run predeploy && docker push jondeates/koi-timer:$npm_package_version && docker push jondeates/koi-timer:latest"
   },
   "devDependencies": {
     "turbo": "^2.0.9"

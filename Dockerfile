@@ -12,7 +12,7 @@ RUN pnpm config set store-dir ~/.pnpm-store
 
 # Prune projects
 FROM base AS pruner
-ARG PROJECT="appliance-remedy"
+ARG PROJECT="koi-timer"
 
 WORKDIR /app
 COPY . .
@@ -20,7 +20,7 @@ RUN turbo prune --scope=${PROJECT} --docker
 
 # Build the project
 FROM base AS builder
-ARG PROJECT="appliance-remedy"
+ARG PROJECT="koi-timer"
 
 WORKDIR /app
 
