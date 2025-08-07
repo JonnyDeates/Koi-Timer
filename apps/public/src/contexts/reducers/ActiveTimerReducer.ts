@@ -24,7 +24,8 @@ export const activeTimerReducer = (state: ActiveTimerReducerState, action: Activ
                 isActive: false,
                 currentTimer: action.currentTimer,
                 count: action.newTime,
-                isEditingTimer: false
+                isEditingTimer: false,
+                startingTime: Infinity
             }
         }
         case "decreaseCount": {

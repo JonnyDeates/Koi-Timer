@@ -9,6 +9,7 @@
     -webkit-animation: 0.3s popIn forwards;
     -o-animation: 0.3s popIn forwards;
     animation: 0.3s popIn forwards;
+    cursor: pointer;
 }
 
 .TimerButtons {
