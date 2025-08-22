@@ -36,7 +36,7 @@ const createServer = async () => {
     });
     // app.use('*', toAppRouter);
     app.get("/", (req, res) => sendIndexHtml(req, res));
-    app.get("*", (req, res) => sendIndexHtml(req, res, 404));
+    app.get("/{*splat}", (req, res) => sendIndexHtml(req, res, 404));
 
 
     // Allows the app to accept network requests.
