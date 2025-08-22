@@ -41,6 +41,8 @@ RUN turbo build --filter=${PROJECT} --filter=${PROJECT_FRONTEND}
 RUN pnpm -r --filter=${PROJECT} run copyFrontend
 RUN --mount=type=cache,id=pnpm,target=~/.pnpm-store pnpm prune --prod --no-optional
 RUN rm -rf ./**/*/src
+RUN rm -rf ./app/apps/public
+
 
 # Final image
 FROM alpine AS runner
