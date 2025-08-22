@@ -1,0 +1,38 @@
+appName: "koi-timer"
+image:
+  repository: 'registry.jonnydeates.com/jonnydeates/koi-timer'
+  pullPolicy: IfNotPresent
+  tag: "latest"
+  port: 5000
+
+postgresql:
+  enabled: false
+  password: "password"
+  runMigrate: false
+
+ingress:
+  enabled: true
+  isStaging: true
+  className: ""
+  hosts:
+    - host: koitimer.com
+      paths:
+        - path: /
+          pathType: Prefix
+    - host: www.koitimer.com
+      paths:
+        - path: /
+          pathType: Prefix
+  tls:
+    - hosts:
+        - koitimer.com
+        - www.koitimer.com
+  cloudflareToken: ""
+
+resources:
+  limits:
+    cpu: 300m
+    memory: 256Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
