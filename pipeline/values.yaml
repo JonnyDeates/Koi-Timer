@@ -1,8 +1,5 @@
 appName: "koi-timer"
 image:
-  repository: 'registry.jonnydeates.com/jonnydeates/koi-timer'
-  pullPolicy: IfNotPresent
-  tag: "latest"
   port: 5000
 
 postgresql:
