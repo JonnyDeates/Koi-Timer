@@ -1,3 +1,3 @@
 include:
   - project: 'jonnydeates/gitlab-templates'
-    file: '/.gitlab-ci.yml'
+    file: '/deployments/deploy-basic.yml'
